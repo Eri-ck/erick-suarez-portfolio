@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Erick Suárez | Product Designer & UI Engineer</title>
+<meta name="description" content="Product Designer and UI Engineer focused on healthcare, fintech, design systems, research and scalable digital products." />
+<meta name="keywords" content="Erick Suárez, Product Designer, UI Engineer, UX Design, Design Systems, Healthcare UX, Fintech, UX Research, Product Design, Digital Products" />
+<meta name="author" content="Erick Suárez" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Erick Suárez | Product Designer & UI Engineer" />
+<meta property="og:description" content="Product Designer and UI Engineer focused on healthcare, fintech, design systems, research and scalable digital products." />
+<meta property="og:site_name" content="Erick Suárez Portfolio" />
+<meta property="og:locale" content="en_US" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#090909;--surface:#121212;--card:#181818;--card2:#1f1f1f;--border:#2A2A2A;
+  --primary:#FF5A1F;--primary-soft:#FF7A45;--text:#F3F0EB;--text2:#B7B1A8;--muted:#7C766D;
+  --success:#38B86A;--warning:#FFB347;--blue:#7C8CFF;
+  --font:'Space Grotesk',system-ui,sans-serif;--mono:'Space Mono',monospace;
+}
+html[data-theme="light"]{
+  --bg:#F5F2EC;--surface:#ECE7DF;--card:#F8F5EF;--card2:#FFFFFF;--border:#D7D0C6;
+  --text:#141414;--text2:#5C5750;--muted:#8A847C;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden}
+body:before{content:'';position:fixed;inset:0;pointer-events:none;background:
+  radial-gradient(circle at 18% 20%,color-mix(in srgb,var(--primary) 12%,transparent),transparent 34%),
+  radial-gradient(circle at 78% 48%,color-mix(in srgb,var(--blue) 8%,transparent),transparent 30%);z-index:0}
+.ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.ambient span{position:absolute;width:3px;height:3px;border-radius:50%;background:color-mix(in srgb,var(--primary) 45%,transparent);animation:depth var(--d,16s) linear infinite;animation-delay:var(--delay,0s)}
+@keyframes depth{0%{opacity:0;transform:translate3d(0,0,0) scale(.25);filter:blur(0)}20%{opacity:.32}70%{opacity:.45;filter:blur(2px)}100%{opacity:0;transform:translate3d(var(--x),var(--y),0) scale(4.2);filter:blur(7px)}}
+
+/* NAV */
+.nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  width:min(1320px,calc(100% - 36px));height:64px;padding:0 22px;
+  display:flex;align-items:center;justify-content:space-between;z-index:50;
+  background:color-mix(in srgb,var(--surface) 78%,transparent);backdrop-filter:blur(22px);
+  border:1px solid color-mix(in srgb,var(--border) 95%,transparent);border-radius:999px;
+  box-shadow:0 20px 70px rgba(0,0,0,.28);
+  transition:transform .46s cubic-bezier(.22,1,.36,1),opacity .46s ease,background .46s ease,border-color .46s ease,box-shadow .46s ease;
+}
+.nav.hidden{opacity:0;transform:translate(-50%,-32px);pointer-events:none;box-shadow:none}
+.brand{display:flex;align-items:center;height:38px;font-family:var(--mono);font-size:15px;font-weight:700;text-decoration:none;color:var(--text);letter-spacing:-.04em}
+.brand img{display:block;width:auto;height:26px;max-width:132px}
+.brand.logo-missing .brand-logo{display:none}
+.brand.logo-missing .brand-text{display:inline}
+.brand-text{display:none}.brand span{color:var(--primary)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{font-size:14px;font-weight:700;text-decoration:none;color:var(--text2);transition:color .18s ease,transform .18s ease}
+.nav-links a:hover{color:var(--text);transform:translateY(-1px)}
+.theme-switch{display:flex;align-items:center;gap:9px;padding:6px 7px;border:1px solid var(--border);background:var(--card);border-radius:999px;cursor:pointer;transition:transform .18s ease,border-color .18s ease}
+.theme-switch:hover{transform:translateY(-1px);border-color:var(--primary)}
+.theme-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-width:34px;text-align:center}
+.switch-track{width:52px;height:28px;border-radius:999px;background:var(--surface);border:1px solid var(--border);position:relative}
+.switch-knob{position:absolute;width:22px;height:22px;border-radius:50%;left:3px;top:2px;background:var(--primary);box-shadow:0 0 18px color-mix(in srgb,var(--primary) 55%,transparent);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.switch-char{position:absolute;width:4px;height:4px;left:12px;top:-2px;background:var(--text);box-shadow:-4px -4px 0 var(--text),0 -4px 0 var(--text),4px -4px 0 var(--text),-4px 0 0 var(--primary),0 0 0 var(--primary),4px 0 0 var(--primary),-4px 4px 0 var(--primary-soft),4px 4px 0 var(--primary-soft);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+html[data-theme="light"] .switch-knob,html[data-theme="light"] .switch-char{transform:translateX(24px)}
+
+/* HERO */
+section{position:relative;z-index:1}
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:104px 24px 52px;overflow:hidden}
+.hero-inner{width:min(1180px,100%);display:flex;flex-direction:column;align-items:center;text-align:center}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.hero-title{font-size:clamp(58px,9vw,124px);line-height:.84;letter-spacing:-.038em;word-spacing:.06em;margin:10px 0 18px}
+.hero-title span{color:var(--primary)}
+.hero-desc{font-size:clamp(16px,2vw,21px);line-height:1.58;color:var(--text2);max-width:760px;margin:0 auto 28px}
+.hero-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:18px 0 42px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 20px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);font-weight:800;text-decoration:none;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease}
+.btn:hover{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 18px 44px color-mix(in srgb,var(--primary) 18%,transparent)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn-primary{background:var(--primary);color:#090909;border-color:var(--primary)}
+.btn-ghost{background:color-mix(in srgb,var(--card) 60%,transparent)}
+
+/* GAME */
+.game-shell{width:min(960px,100%);position:relative;text-align:left;filter:drop-shadow(0 26px 76px rgba(0,0,0,.34));margin-top:6px}
+.game-shell:before{content:'';position:absolute;inset:-16px;border-radius:34px;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 36%,transparent),color-mix(in srgb,var(--blue) 18%,transparent),color-mix(in srgb,var(--primary-soft) 20%,transparent));clip-path:polygon(3% 0,97% 0,100% 9%,100% 91%,97% 100%,3% 100%,0 91%,0 9%);z-index:-2;opacity:.72}
+.game-shell:after{content:'';position:absolute;inset:-8px;border-radius:28px;background:var(--surface);clip-path:polygon(2% 0,98% 0,100% 8%,100% 92%,98% 100%,2% 100%,0 92%,0 8%);z-index:-1}
+.game-top{height:44px;border:1px solid var(--border);border-bottom:0;border-radius:24px 24px 0 0;background:var(--surface);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-family:var(--mono);font-size:10px;color:var(--text2)}
+.lights{display:flex;gap:7px}.lights i{width:9px;height:9px;border-radius:2px;background:var(--primary)}.lights i:nth-child(2){background:var(--warning)}.lights i:nth-child(3){background:var(--success)}
+.game-wrap{position:relative;background:#080808;border:1px solid var(--border);border-radius:0 0 24px 24px;padding:12px;overflow:hidden}
+.game-wrap:before{content:'';position:absolute;inset:12px;border-radius:16px;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 4px);pointer-events:none;z-index:2;opacity:.32}
+.game-wrap:after{content:'';position:absolute;inset:12px;border-radius:16px;pointer-events:none;box-shadow:inset 0 0 0 2px rgba(255,90,31,.14),inset 0 0 70px rgba(255,90,31,.08)}
+#game{display:block;width:100%;height:auto;border-radius:16px;image-rendering:pixelated;background:#090909;cursor:none}
+.game-ui{display:flex;justify-content:space-between;gap:24px;margin-top:16px;padding:0 28px 2px;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.game-ui span:last-child{text-align:right}
+
+/* MINI CARDS */
+.hero-mini-row{width:min(940px,100%);display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:left;margin-top:82px}
+.mini-card{background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--border);border-radius:24px;padding:22px 24px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.mini-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 20px 48px color-mix(in srgb,var(--primary) 8%,transparent)}
+.mini-card strong{display:block;font-size:28px;line-height:1;margin-bottom:8px}
+.mini-card p{font-size:15px;line-height:1.55;color:var(--text2)}
+.trust{width:100vw;overflow:hidden;margin-top:72px;padding:2px 0}
+.trust-track{display:flex;gap:12px;animation:marquee 24s linear infinite;width:max-content}
+.chip{border:1px solid var(--border);background:color-mix(in srgb,var(--card) 82%,transparent);border-radius:999px;padding:10px 16px;font-family:var(--mono);font-size:12px;color:var(--text2);white-space:nowrap}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.content-section{padding:110px 24px;background:var(--bg)}
+.section-inner{width:min(1120px,100%);margin:0 auto}
+.section-title{font-size:clamp(38px,6vw,78px);line-height:.95;letter-spacing:-.055em;margin-bottom:18px}
+.lead{font-size:19px;line-height:1.7;color:var(--text2);max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:26px;padding:24px;min-height:190px}
+.card h3{font-size:24px;margin-bottom:10px}.card p{color:var(--text2);line-height:1.65}
+
+/* IMPACT SIGNALS — BALANCED LEDGER */
+#work.content-section{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:72px 24px;
+}
+#work .section-inner{
+  width:min(1180px,100%);
+}
+.impact-layout{
+  display:grid;
+  grid-template-columns:.62fr 1.38fr;
+  gap:34px;
+  align-items:center;
+}
+.impact-copy-panel{
+  order:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:520px;
+  padding:8px 0;
+}
+.impact-copy-panel .kicker{margin-bottom:16px}
+.impact-title-big{
+  font-size:clamp(54px,7vw,98px);
+  line-height:.82;
+  letter-spacing:-.075em;
+  margin-bottom:22px;
+}
+.impact-title-big span{display:block}
+.impact-copy-panel .lead{
+  max-width:420px;
+  font-size:18px;
+  line-height:1.55;
+}
+.impact-note{
+  margin-top:32px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--card) 86%,transparent);
+  border-radius:24px;
+  padding:18px;
+  font-family:var(--mono);
+  font-size:10px;
+  line-height:1.7;
+  color:var(--muted);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.impact-wrap{
+  order:2;
+  min-height:520px;
+  border:1px solid var(--border);
+  border-radius:34px;
+  background:
+    radial-gradient(circle at 8% 0%,color-mix(in srgb,var(--primary) 16%,transparent),transparent 30%),
+    linear-gradient(145deg,color-mix(in srgb,var(--card) 94%,transparent),color-mix(in srgb,var(--surface) 96%,transparent));
+  padding:18px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.impact-header{
+  flex:0 0 auto;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+  padding:4px 6px 14px;
+  margin-bottom:16px;
+}
+.impact-header strong{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--primary);
+}
+.impact-header span{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--muted);
+}
+.impact-grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:1.18fr .82fr;
+  gap:16px;
+  align-items:stretch;
+}
+.impact-feature{
+  min-height:0;
+}
+.impact-stack{
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  gap:16px;
+  min-height:0;
+}
+.impact-card{
+  background:color-mix(in srgb,var(--card) 92%,transparent);
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .22s ease,box-shadow .22s ease;
+}
+.impact-card:hover{
+  border-color:color-mix(in srgb,var(--primary) 45%,var(--border));
+  box-shadow:0 18px 48px color-mix(in srgb,var(--primary) 8%,transparent);
+}
+.impact-card:before{
+  content:'';
+  position:absolute;
+  right:-70px;
+  bottom:-90px;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--primary) 14%,transparent),transparent 66%);
+  pointer-events:none;
+}
+.impact-main-card{
+  height:100%;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  gap:18px;
+  padding:24px;
+}
+.impact-main-top{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+.impact-kicker{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.impact-number{
+  font-size:clamp(44px,6vw,84px);
+  line-height:.86;
+  letter-spacing:-.075em;
+  font-weight:800;
+  color:var(--text);
+  margin-bottom:0;
+}
+.impact-main-card .impact-number{
+  font-size:clamp(64px,8vw,112px);
+}
+.impact-title{
+  font-size:22px;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  margin-bottom:10px;
+}
+.impact-main-card .impact-title{
+  font-size:28px;
+  max-width:430px;
+}
+.impact-copy{
+  color:var(--text2);
+  font-size:14px;
+  line-height:1.52;
+}
+.impact-main-card .impact-copy{
+  font-size:15px;
+  max-width:540px;
+}
+.impact-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:16px;
+}
+.impact-tag{
+  font-family:var(--mono);
+  font-size:9px;
+  color:var(--primary);
+  border:1px solid color-mix(in srgb,var(--primary) 28%,var(--border));
+  background:color-mix(in srgb,var(--primary) 8%,transparent);
+  border-radius:999px;
+  padding:7px 9px;
+}
+.impact-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.signal{
+  border:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 72%,transparent);
+  border-radius:18px;
+  padding:15px;
+}
+.signal strong{
+  display:block;
+  font-size:26px;
+  letter-spacing:-.04em;
+  margin-bottom:5px;
+}
+.signal span{
+  display:block;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.35;
+}
+.impact-side-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.impact-side-card .impact-number{
+  font-size:clamp(42px,5vw,72px);
+  margin-bottom:12px;
+}
+.impact-side-card .impact-title{
+  font-size:21px;
+}
+.builder-message{
+  width:100%;
+  resize:vertical;
+  min-height:92px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--card);
+  color:var(--text);
+  padding:14px;
+  font-family:var(--font);
+  font-size:14px;
+  line-height:1.5;
+  white-space:pre-wrap;
+  outline:none;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+.builder-message:focus{
+  border-color:var(--builder-accent);
+  box-shadow:0 10px 30px color-mix(in srgb,var(--builder-accent) 10%,transparent);
+}
+.live-output-hero[data-intent="trust"]{
+  border-style:dashed!important;
+}
+.live-output-hero[data-intent="speed"]{
+  box-shadow:inset 5px 0 0 var(--builder-accent)!important;
+}
+.live-output-hero[data-intent="clarity"]{
+  border-style:solid!important;
+}
+@media(max-width:980px){
+  #work.content-section{
+    min-height:auto;
+    padding:86px 24px;
+  }
+  .impact-layout{
+    grid-template-columns:1fr;
+  }
+  .impact-copy-panel{
+    min-height:auto;
+  }
+  .impact-title-big span{
+    display:inline;
+  }
+  .impact-wrap{
+    min-height:auto;
+  }
+  .impact-grid{
+    grid-template-columns:1fr;
+  }
+  .impact-stack{
+    grid-template-rows:auto;
+  }
+  .impact-main-top{
+    flex-direction:column;
+  }
+  .impact-strip{
+    grid-template-columns:1fr;
+  }
+}
+
+/* SYSTEM BUILDER */
+#builder.content-section{min-height:100vh;display:flex;align-items:center;padding:86px 24px}
+.builder-wrap{margin-top:48px;border:1px solid var(--border);border-radius:34px;background:radial-gradient(circle at 70% 8%,color-mix(in srgb,var(--primary) 13%,transparent),transparent 28%),linear-gradient(145deg,color-mix(in srgb,var(--card) 94%,transparent),color-mix(in srgb,var(--surface) 96%,transparent));padding:18px;overflow:hidden}
+.builder-shell{display:grid;grid-template-columns:.78fr 1.22fr;gap:16px;min-height:560px}
+.builder-left{border:1px solid var(--border);border-radius:26px;padding:22px;background:color-mix(in srgb,var(--card) 88%,transparent);display:flex;flex-direction:column;justify-content:space-between}
+.builder-stage-label{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.builder-left h3{font-size:34px;line-height:.98;letter-spacing:-.055em;margin-bottom:12px}
+.builder-left p{color:var(--text2);font-size:15px;line-height:1.65}
+.builder-steps{display:grid;gap:10px;margin-top:24px}
+.builder-step{border:1px solid var(--border);border-radius:18px;padding:14px;background:color-mix(in srgb,var(--surface) 78%,transparent);transition:border-color .2s ease,transform .2s ease}
+.builder-step:hover{border-color:var(--primary);transform:translateX(3px)}
+.builder-step strong{display:block;font-size:15px;margin-bottom:5px}
+.builder-step span{display:block;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.builder-canvas{border:1px solid var(--border);border-radius:26px;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),color-mix(in srgb,var(--surface) 88%,transparent);background-size:36px 36px;padding:18px;position:relative;overflow:hidden}
+.builder-canvas:before{content:'SYSTEM BUILDER';position:absolute;top:18px;right:22px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted)}
+.token-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;padding-right:180px}
+.token{border:1px solid var(--border);border-radius:18px;background:color-mix(in srgb,var(--card) 90%,transparent);padding:14px;min-height:92px;transition:transform .22s ease,border-color .22s ease}
+.token:hover{transform:translateY(-4px);border-color:var(--primary)}
+.token small{display:block;font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:10px;letter-spacing:.12em;text-transform:uppercase}
+.token strong{font-size:17px}
+.color-swatch{width:100%;height:28px;border-radius:12px;background:var(--primary);margin-bottom:10px;box-shadow:0 0 28px color-mix(in srgb,var(--primary) 24%,transparent)}
+.radius-swatch{width:44px;height:44px;border-radius:16px;border:1px solid var(--builder-accent,var(--primary));margin-bottom:10px;box-shadow:0 0 24px color-mix(in srgb,var(--builder-accent,var(--primary)) 18%,transparent)}
+.type-swatch{font-size:30px;line-height:.9;letter-spacing:-.08em;margin-bottom:10px}
+.space-swatch{display:flex;gap:5px;margin-bottom:12px}.space-swatch i{display:block;width:10px;height:34px;border-radius:999px;background:color-mix(in srgb,var(--primary) 18%,transparent)}
+.component-lane{display:grid;grid-template-columns:.86fr 1.14fr;gap:16px;margin-top:10px}
+.component-panel,.output-panel{border:1px solid var(--border);background:color-mix(in srgb,var(--card) 86%,transparent);border-radius:24px;padding:18px;min-height:330px}
+.panel-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.ui-kit{display:grid;gap:12px}.ui-button{height:44px;border-radius:14px;background:var(--primary);color:#090909;display:flex;align-items:center;justify-content:center;font-weight:800}.ui-input{height:46px;border:1px solid var(--border);border-radius:14px;display:flex;align-items:center;padding:0 14px;color:var(--muted);background:var(--surface)}.ui-card-mini{border:1px solid var(--border);border-radius:18px;padding:14px;background:var(--surface)}.ui-card-mini strong{display:block;font-size:24px;margin-bottom:4px}.ui-card-mini span{color:var(--text2);font-size:13px}
+.output-browser{border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--bg)}.browser-top{height:38px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;padding:0 14px}.browser-top i{width:8px;height:8px;border-radius:50%;background:var(--primary)}
+.product-output{padding:18px;display:grid;gap:12px}.output-hero{border:1px solid var(--border);border-radius:18px;padding:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 15%,transparent),transparent)}.output-hero strong{display:block;font-size:24px;letter-spacing:-.04em;margin-bottom:8px}.output-hero span{color:var(--text2);font-size:14px}.output-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.output-tile{border:1px solid var(--border);border-radius:16px;padding:14px;min-height:82px;background:var(--card)}.output-tile small{display:block;font-family:var(--mono);color:var(--muted);font-size:9px;margin-bottom:8px}.output-tile strong{font-size:20px}
+.builder-character{position:absolute;left:35px;bottom:26px;width:4px;height:4px;background:var(--text);box-shadow:-8px -12px 0 #27272A,-4px -12px 0 #27272A,0 -12px 0 #27272A,4px -12px 0 #27272A,-8px -8px 0 var(--text),-4px -8px 0 var(--text),0 -8px 0 var(--text),4px -8px 0 var(--text),-8px 0 0 var(--primary),-4px 0 0 var(--primary),0 0 0 var(--primary),4px 0 0 var(--primary),-4px 8px 0 #111,4px 8px 0 #111,0 0 28px color-mix(in srgb,var(--primary) 55%,transparent);animation:builderWalk 6s ease-in-out infinite}
+@keyframes builderWalk{0%,100%{transform:translateX(0)}50%{transform:translateX(48px)}}
+@media(max-width:980px){#builder.content-section{min-height:auto}.builder-shell,.component-lane,.token-row{grid-template-columns:1fr}.token-row{padding-right:0}}
+/* ARTIFACT MODAL */
+.dialog{position:fixed;inset:0;background:rgba(0,0,0,.74);backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;padding:22px}
+.dialog.active{display:flex}
+.dialog-box{width:min(1480px,calc(100% - 28px));height:min(820px,92vh);background:linear-gradient(145deg,var(--card),var(--surface));border:1px solid var(--border);border-radius:36px;overflow:hidden;display:grid;grid-template-columns:300px minmax(0,1fr);box-shadow:0 40px 120px rgba(0,0,0,.58);position:relative}
+.dialog-close{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:22px;display:grid;place-items:center;cursor:pointer;z-index:6;transition:transform .18s ease,border-color .18s ease}
+.dialog-close:hover{transform:scale(1.06);border-color:var(--primary)}
+.artifact-side{padding:24px 22px;border-right:1px solid var(--border);background:color-mix(in srgb,var(--card) 78%,transparent);min-width:0}
+.artifact-clue{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--primary);text-transform:uppercase;margin-bottom:18px}
+.artifact-icon{font-size:34px;margin-bottom:14px}
+.artifact-side h3{font-size:28px;line-height:1.02;letter-spacing:-.05em;margin-bottom:14px}
+.artifact-side p{font-size:13px;line-height:1.62;color:var(--text2);margin-bottom:22px}
+.artifact-map-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.artifact-nav{display:flex;flex-direction:column;gap:10px}
+.artifact-tab{border:1px solid transparent;background:transparent;border-radius:18px;padding:14px 16px;text-align:left;color:var(--text);cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.artifact-tab:hover{background:color-mix(in srgb,var(--card2) 88%,transparent);border-color:var(--border);transform:translateX(2px)}
+.artifact-tab.active{background:color-mix(in srgb,var(--primary) 10%,transparent);border-color:color-mix(in srgb,var(--primary) 35%,transparent)}
+.artifact-tab strong{display:block;font-size:14px;margin-bottom:5px}.artifact-tab span{display:block;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.artifact-viewer{padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0;min-height:0}
+.artifact-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.artifact-title{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.artifact-actions{display:flex;gap:10px;flex-wrap:wrap;padding-right:50px}
+.artifact-action{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:10px 14px;font-weight:800;text-decoration:none;cursor:pointer;font-size:13px;transition:transform .18s ease,border-color .18s ease}
+.artifact-action:hover{transform:translateY(-1px);border-color:var(--primary)}
+.embed-shell{flex:1;min-height:0;border:1px solid var(--border);background:#0d0d0d;border-radius:26px;overflow:hidden;position:relative}
+.embed-shell:after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.03),rgba(255,255,255,.03) 1px,transparent 1px,transparent 4px);opacity:.14}
+.embed-shell iframe{width:100%;height:100%;border:0;background:#fff;display:block}
+.embed-shell.is-image{display:flex;flex-direction:column;padding:0;background:#0d0d0d}
+.embed-shell.is-image:after{display:none}
+.embed-shell.is-image iframe{display:none}
+.embed-shell.is-link{display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 50% 20%,color-mix(in srgb,var(--primary) 18%,transparent),#0d0d0d 58%)}
+.embed-shell.is-link iframe,.embed-shell.is-link .artifact-image-viewer{display:none}
+.artifact-link-viewer{display:none;position:relative;z-index:2;max-width:520px;text-align:center;border:1px solid var(--border);border-radius:24px;background:color-mix(in srgb,var(--card) 88%,transparent);padding:28px}
+.embed-shell.is-link .artifact-link-viewer{display:block}
+.artifact-link-viewer small{display:block;font-family:var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--primary);margin-bottom:12px}
+.artifact-link-viewer strong{display:block;font-size:26px;letter-spacing:-.04em;margin-bottom:10px}
+.artifact-link-viewer p{color:var(--text2);line-height:1.55;margin-bottom:18px}
+.artifact-link-viewer a{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--primary);color:#090909;font-weight:900;text-decoration:none;padding:12px 18px}
+.artifact-image-viewer{display:none;flex:1;min-height:0;gap:0;flex-direction:column}
+.embed-shell.is-image .artifact-image-viewer{display:flex}
+.artifact-image-stage{flex:1;min-height:0;background:#0d0d0d;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:18px;position:relative}
+.artifact-image-stage:before{content:'';position:absolute;inset:-24px;background-image:linear-gradient(rgba(8,8,8,.18),rgba(8,8,8,.28)),var(--artifact-bg);background-size:cover;background-position:center;filter:blur(18px);transform:scale(1.04);opacity:.72}
+.artifact-image-stage img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover;object-position:center;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.22);position:relative;z-index:1}
+.artifact-image-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:8px 12px;border-top:1px solid var(--border);background:#0d0d0d}
+.artifact-image-caption{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.artifact-image-controls{display:flex;gap:8px;align-items:center}
+.artifact-image-control{width:34px;height:34px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--text);font-weight:800;cursor:pointer;transition:border-color .18s ease,transform .18s ease,opacity .18s ease}
+.artifact-image-control:hover{border-color:var(--primary);transform:translateY(-1px)}
+.artifact-image-control:disabled{opacity:.36;cursor:not-allowed;transform:none}
+.artifact-thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.artifact-thumb{border:1px solid var(--border);background:var(--card);color:var(--text2);border-radius:999px;padding:8px 10px;font-family:var(--mono);font-size:10px;cursor:pointer;white-space:nowrap;transition:border-color .18s ease,color .18s ease,background .18s ease}
+.artifact-thumb.active{border-color:var(--primary);color:var(--text);background:color-mix(in srgb,var(--primary) 12%,var(--card))}
+.artifact-footer{display:flex;justify-content:space-between;align-items:center;min-height:38px}
+.dialog-tags{display:flex;gap:10px;flex-wrap:wrap}
+.dtag{font-family:var(--mono);font-size:11px;border:1px solid var(--border);border-radius:999px;padding:8px 12px;color:var(--text2);background:var(--card)}
+
+@media(max-width:980px){
+  .grid{grid-template-columns:1fr}.hero-mini-row{grid-template-columns:1fr 1fr}.nav-links{display:none}
+  .dialog-box{grid-template-columns:1fr;height:auto;max-height:92vh;overflow:auto}.artifact-side{border-right:0;border-bottom:1px solid var(--border)}
+  .embed-shell{min-height:480px}.artifact-actions{padding-right:48px}
+  .embed-shell.is-image{min-height:480px}.artifact-image-stage{padding:14px}.artifact-image-stage img{width:100%;height:100%;max-width:100%;max-height:100%}
+}
+@media(max-width:620px){
+  #hero{padding-inline:18px}.hero-title{font-size:54px}.hero-actions{width:100%}.hero-actions .btn{width:100%}
+  .hero-mini-row{grid-template-columns:1fr}.game-ui{flex-direction:column;padding:0 18px 2px}.theme-label{display:none}.game-top{font-size:8px}
+  .embed-shell.is-image{min-height:360px}.artifact-image-stage{padding:10px}.artifact-image-stage img{width:100%;height:100%;max-width:100%;max-height:100%}.artifact-image-meta{align-items:flex-start;flex-direction:column}.artifact-thumb{font-size:9px}.artifact-image-controls{align-self:flex-end}
+}
+
+/* INTERACTIVE BUILDER ADD-ON · STEPPED WIZARD */
+.interactive-builder{
+  --builder-accent:var(--primary);
+  --builder-radius:16px;
+  --builder-surface-radius:22px;
+  --builder-surface-bg:color-mix(in srgb,var(--surface) 86%,transparent);
+  --builder-surface-border:var(--border);
+  --builder-surface-shadow:none;
+  --builder-surface-glow:transparent;
+}
+.builder-left{
+  min-height:590px;
+}
+.builder-progress{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:16px 0 18px;
+}
+.progress-step{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--muted);
+  border-radius:999px;
+  min-height:34px;
+  padding:0 12px;
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.progress-step.active{
+  border-color:var(--builder-accent);
+  color:var(--text);
+  background:color-mix(in srgb,var(--builder-accent) 10%,var(--card));
+}
+.builder-controls{
+  display:block;
+  margin-top:12px;
+}
+.builder-panel{
+  display:none;
+}
+.builder-panel.active{
+  display:block;
+  animation:panelIn .26s ease both;
+}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.builder-group{
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:color-mix(in srgb,var(--surface) 70%,transparent);
+  padding:14px;
+  margin-bottom:12px;
+}
+.builder-group-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+.builder-group-title strong{font-size:14px}
+.builder-group-title span{
+  font-family:var(--mono);
+  font-size:9px;
+  color:var(--muted);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.option-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.option-grid.two{
+  grid-template-columns:repeat(2,1fr);
+}
+.builder-option{
+  min-height:58px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--card);
+  color:var(--text);
+  padding:10px;
+  text-align:left;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.builder-option:hover{
+  transform:translateY(-2px);
+  border-color:color-mix(in srgb,var(--builder-accent) 45%,var(--border));
+}
+.builder-option.active{
+  border-color:var(--builder-accent);
+  background:color-mix(in srgb,var(--builder-accent) 10%,var(--card));
+  box-shadow:0 10px 30px color-mix(in srgb,var(--builder-accent) 10%,transparent);
+}
+.builder-option small{
+  display:block;
+  font-family:var(--mono);
+  font-size:8px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.builder-option b{font-size:13px}
+.builder-nav-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+.builder-nav,
+.builder-reset{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:999px;
+  min-height:44px;
+  padding:0 16px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.builder-nav.primary{
+  background:var(--builder-accent);
+  border-color:var(--builder-accent);
+  color:#090909;
+}
+.builder-nav:hover,
+.builder-reset:hover{
+  transform:translateY(-2px);
+  border-color:var(--builder-accent);
+}
+.builder-reset{
+  margin-top:auto;
+  width:100%;
+}
+.builder-live-grid{
+  display:grid;
+  grid-template-rows:auto 1fr;
+  gap:16px;
+  height:100%;
+}
+.live-button{
+  background:var(--builder-accent)!important;
+  border-radius:var(--builder-radius)!important;
+  min-height:var(--builder-size,46px)!important;
+}
+.live-input,.live-card,.live-tile,.live-output-hero{
+  border-radius:var(--builder-radius)!important;
+}
+.live-card,.live-tile,.live-output-hero,.output-browser,.component-panel,.output-panel{
+  border-radius:var(--builder-surface-radius,var(--builder-radius))!important;
+  border-color:var(--builder-surface-border,var(--border))!important;
+  background:var(--builder-surface-bg)!important;
+  box-shadow:var(--builder-surface-shadow,none)!important;
+}
+.live-output-hero{
+  background:
+    radial-gradient(circle at 90% 10%,var(--builder-surface-glow),transparent 42%),
+    linear-gradient(135deg,color-mix(in srgb,var(--builder-accent) 18%,transparent),var(--builder-surface-bg))!important;
+}
+.output-browser{
+  background:
+    radial-gradient(circle at 15% 10%,var(--builder-surface-glow),transparent 38%),
+    var(--bg)!important;
+}
+.live-output-hero{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--builder-accent) 18%,transparent),transparent)!important;
+}
+.live-swatch,.color-swatch{
+  background:var(--builder-accent)!important;
+}
+.browser-top i{
+  background:var(--builder-accent)!important;
+}
+.output-browser{
+  border-radius:var(--builder-browser-radius,22px)!important;
+}
+.output-hero strong{
+  font-size:var(--builder-title-size,24px)!important;
+}
+.builder-character{
+  box-shadow:
+    -8px -12px 0 #27272A,-4px -12px 0 #27272A,0 -12px 0 #27272A,4px -12px 0 #27272A,
+    -8px -8px 0 var(--text),-4px -8px 0 var(--text),0 -8px 0 var(--text),4px -8px 0 var(--text),
+    -8px 0 0 var(--builder-accent),-4px 0 0 var(--builder-accent),0 0 0 var(--builder-accent),4px 0 0 var(--builder-accent),
+    -4px 8px 0 #111,4px 8px 0 #111,
+    0 0 28px color-mix(in srgb,var(--builder-accent) 55%,transparent)!important;
+}
+@media(max-width:980px){
+  .option-grid,.option-grid.two{grid-template-columns:1fr}
+  .builder-left{min-height:auto}
+}
+
+
+/* ABOUT · OPERATING SYSTEM */
+#about.content-section{min-height:100vh;display:flex;align-items:center;padding:92px 24px}
+.about-os{margin-top:48px;display:grid;grid-template-columns:.72fr 1.28fr;gap:24px;align-items:stretch}
+.about-panel{border:1px solid var(--border);border-radius:34px;background:radial-gradient(circle at 10% 0%,color-mix(in srgb,var(--primary) 14%,transparent),transparent 32%),linear-gradient(145deg,color-mix(in srgb,var(--card) 92%,transparent),color-mix(in srgb,var(--surface) 96%,transparent));padding:28px;overflow:hidden}
+.about-panel h3{font-size:clamp(42px,5vw,72px);line-height:.9;letter-spacing:-.07em;margin-bottom:22px}
+.about-panel p{color:var(--text2);line-height:1.7;font-size:16px}
+.about-stack{display:grid;gap:16px}
+.os-module{border:1px solid var(--border);background:color-mix(in srgb,var(--card) 90%,transparent);border-radius:26px;padding:22px;display:grid;grid-template-columns:120px 1fr;gap:18px;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.os-module:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 22px 60px color-mix(in srgb,var(--primary) 10%,transparent)}
+.os-module strong{font-size:20px;letter-spacing:-.03em}
+.os-module span{color:var(--text2);line-height:1.55;font-size:15px}
+.about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.about-tag{border:1px solid var(--border);background:color-mix(in srgb,var(--surface) 76%,transparent);color:var(--text2);border-radius:999px;padding:10px 14px;font-family:var(--mono);font-size:11px}
+.direction-card{margin-top:22px;border:1px solid color-mix(in srgb,var(--primary) 36%,var(--border));background:color-mix(in srgb,var(--primary) 8%,transparent);border-radius:24px;padding:20px;font-family:var(--mono);color:var(--text);font-size:12px;line-height:1.8}
+
+/* CONTACT */
+#contact.content-section{min-height:86vh;display:flex;align-items:center;padding:92px 24px}
+.contact-shell{margin-top:48px;border:1px solid var(--border);border-radius:36px;background:radial-gradient(circle at 80% 20%,color-mix(in srgb,var(--primary) 16%,transparent),transparent 30%),linear-gradient(145deg,color-mix(in srgb,var(--card) 92%,transparent),color-mix(in srgb,var(--surface) 96%,transparent));padding:28px;display:grid;grid-template-columns:1.08fr .92fr;gap:24px}
+.contact-main{border:1px solid var(--border);border-radius:28px;padding:28px;background:color-mix(in srgb,var(--bg) 58%,transparent)}
+.contact-main h2{font-size:clamp(48px,7vw,96px);line-height:.86;letter-spacing:-.075em;margin-bottom:22px}
+.contact-main p{max-width:650px;color:var(--text2);font-size:18px;line-height:1.65}
+.contact-side{display:grid;gap:14px}
+.availability-card{border:1px solid var(--border);border-radius:26px;padding:22px;background:color-mix(in srgb,var(--card) 90%,transparent)}
+.availability-card small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin-bottom:14px}
+.availability-card strong{display:block;font-size:24px;line-height:1.08;letter-spacing:-.04em;margin-bottom:10px}
+.availability-card span{color:var(--text2);line-height:1.55;font-size:15px}
+.contact-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.contact-link{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;min-height:48px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:800;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.contact-link:hover{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 18px 44px color-mix(in srgb,var(--primary) 14%,transparent)}
+
+/* FOOTER */
+.site-footer{position:relative;z-index:1;border-top:1px solid var(--border);background:color-mix(in srgb,var(--surface) 86%,var(--bg));padding:30px 24px}
+.footer-inner{width:min(1180px,100%);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+.footer-brand{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--text2);line-height:1.7}
+.footer-meta{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.footer-pill{border:1px solid var(--border);border-radius:999px;padding:9px 12px;color:var(--muted);font-family:var(--mono);font-size:10px}
+
+@media(max-width:980px){
+  .about-os,.contact-shell{grid-template-columns:1fr}
+  .os-module{grid-template-columns:1fr}
+  .contact-actions{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-meta{justify-content:flex-start}
+}
+
+
+/* CASE ARTIFACT MODAL EXTENSIONS */
+.case-evidence{display:grid;gap:10px;margin-top:16px}
+.case-block{border:1px solid var(--border);border-radius:16px;padding:12px;background:color-mix(in srgb,var(--surface) 72%,transparent)}
+.case-block small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--primary);text-transform:uppercase;margin-bottom:8px}
+.case-block p{color:var(--text2);font-size:12px;line-height:1.52}
+.case-block p.case-lines{white-space:pre-line}
+.case-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.case-kpi{border:1px solid var(--border);border-radius:14px;padding:10px;background:var(--card)}
+.case-kpi strong{display:block;font-size:18px;letter-spacing:-.04em;margin-bottom:4px}
+.case-kpi span{display:block;color:var(--text2);font-size:11px;line-height:1.35}
+.artifact-side.case-mode{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--primary) 45%,var(--border)) transparent}
+.artifact-side.case-mode::-webkit-scrollbar{width:6px}
+.artifact-side.case-mode::-webkit-scrollbar-track{background:transparent}
+.artifact-side.case-mode::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--primary) 40%,var(--border));border-radius:999px}
+.artifact-side.case-mode:not(.has-artifact-tabs) .artifact-nav{display:none}
+
+/* CAREER TIMELINE */
+.career-timeline{margin-top:26px;border:1px solid var(--border);background:color-mix(in srgb,var(--surface) 76%,transparent);border-radius:26px;padding:20px}
+.timeline-title{font-family:var(--mono);font-size:10px;color:var(--primary);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
+.timeline-list{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:start;padding:12px;border:1px solid var(--border);border-radius:18px;background:color-mix(in srgb,var(--card) 82%,transparent)}
+.timeline-year{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.timeline-copy strong{display:block;font-size:15px;margin-bottom:4px}
+.timeline-copy span{color:var(--text2);font-size:13px;line-height:1.45}
+@media(max-width:720px){.case-kpis{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="ambient" id="ambient"></div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#hero" aria-label="Erick Suárez home">
+    <img class="brand-logo" src="Logo erick dev 26.svg" alt="Erick.dev" onerror="this.closest('.brand').classList.add('logo-missing')" />
+    <span class="brand-text">erick<span>.</span>dev</span>
+  </a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#builder">System Builder</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="theme-switch" id="themeSwitch" aria-label="Toggle dark and light mode">
+    <span class="theme-label" id="themeText">dark</span>
+    <span class="switch-track"><span class="switch-knob"></span><span class="switch-char"></span></span>
+  </button>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-head">
+      <div class="kicker">Product Designer · UX Systems · Interactive UI</div>
+      <h1 class="hero-title">Erick <span>Suárez</span></h1>
+      <p class="hero-desc">I design systems, interfaces, and product experiences that feel intentional. Play the portfolio to unlock real artifacts from my work.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="document.getElementById('game').focus()">Start exploring →</button>
+        <a class="btn btn-ghost" href="#work">View selected work</a>
+      </div>
+    </div>
+
+    <div class="game-shell">
+      <div class="game-top">
+        <div class="lights"><i></i><i></i><i></i></div>
+        <div>PLAY THE PORTFOLIO · COLLECT WORK AREAS</div>
+        <div><span id="score">0</span>/5</div>
+      </div>
+      <div class="game-wrap"><canvas id="game" width="900" height="420" tabindex="0"></canvas></div>
+      <div class="game-ui">
+        <span>← → / A D move · SPACE jump</span>
+        <span>Infinite loop enabled</span>
+      </div>
+    </div>
+
+    <div class="hero-mini-row">
+      <div class="mini-card"><strong>6+</strong><p>years designing digital products.</p></div>
+      <div class="mini-card"><strong>3×</strong><p>systems built or maintained.</p></div>
+      <div class="mini-card"><strong>∞</strong><p>curiosity for the design-code boundary.</p></div>
+    </div>
+
+    <div class="trust">
+      <div class="trust-track">
+        <span class="chip">Design Systems</span><span class="chip">Product Thinking</span><span class="chip">Fintech</span><span class="chip">AI Products</span><span class="chip">Healthcare UX</span><span class="chip">Frontend Systems</span><span class="chip">Prototyping</span><span class="chip">UX Research</span>
+        <span class="chip">Design Systems</span><span class="chip">Product Thinking</span><span class="chip">Fintech</span><span class="chip">AI Products</span><span class="chip">Healthcare UX</span><span class="chip">Frontend Systems</span><span class="chip">Prototyping</span><span class="chip">UX Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="content-section">
+  <div class="section-inner">
+    <div class="impact-layout">
+
+      <div class="impact-copy-panel">
+        <div>
+          <div class="kicker">Selected Work</div>
+          <h2 class="impact-title-big">
+            <span>Impact</span>
+            <span>signals</span>
+            <span>from real</span>
+            <span>products.</span>
+          </h2>
+          <p class="lead">Business evidence: users reached, money moved, budgets saved and systems scaled through UX, product thinking and design systems.</p>
+        </div>
+
+        <div class="impact-note">
+          A compact ledger of outcomes that connects interface work with product value.
+        </div>
+      </div>
+
+      <div class="impact-wrap">
+        <div class="impact-header">
+          <strong>Impact Ledger</strong>
+          <span>fintech · healthcare · systems</span>
+        </div>
+
+        <div class="impact-grid">
+          <div class="impact-feature">
+            <article class="impact-card impact-main-card">
+              <div class="impact-main-top">
+                <div>
+                  <div class="impact-kicker">Current fintech product</div>
+                  <div class="impact-number">14k+</div>
+                </div>
+                <div class="impact-tags">
+                  <span class="impact-tag">FINTECH</span>
+                  <span class="impact-tag">LATAM SCALE</span>
+                  <span class="impact-tag">PRODUCT FLOWS</span>
+                </div>
+              </div>
+
+              <div>
+                <h3 class="impact-title">users reached by financial product flows</h3>
+                <p class="impact-copy">Current fintech product used by 14,000+ people across Mexico and Latin America, connecting UX decisions with financial behavior at scale.</p>
+              </div>
+
+              <div class="impact-strip">
+                <div class="signal"><strong>$4M+</strong><span>MXN placed monthly in loans.</span></div>
+                <div class="signal"><strong>LATAM</strong><span>Regional financial product context.</span></div>
+                <div class="signal"><strong>E2E</strong><span>Brief → UX → UI → handoff.</span></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="impact-stack">
+            <article class="impact-card impact-side-card">
+              <div>
+                <div class="impact-kicker">Healthcare operations</div>
+                <div class="impact-number">80%</div>
+                <h3 class="impact-title">budget saved for medical clinics</h3>
+                <p class="impact-copy">Medical clinics reduced patient administration costs by moving from external services into a clearer digital workflow.</p>
+              </div>
+              <div class="impact-tags"><span class="impact-tag">HEALTHCARE UX</span><span class="impact-tag">OPS SAVINGS</span></div>
+            </article>
+
+            <article class="impact-card impact-side-card">
+              <div>
+                <div class="impact-kicker">Design systems + research</div>
+                <div class="impact-number">3×</div>
+                <h3 class="impact-title">systems built or maintained</h3>
+                <p class="impact-copy">Component logic, tokens, states and documentation to reduce ambiguity between design, product and engineering.</p>
+              </div>
+              <div class="impact-tags"><span class="impact-tag">TOKENS</span><span class="impact-tag">RESEARCH</span><span class="impact-tag">IA</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="builder" class="content-section">
+  <div class="section-inner">
+    <div class="kicker">System Builder</div>
+    <h2 class="section-title">Build a tiny product system.</h2>
+    <p class="lead">A stepped builder: select several tokens, assemble component behavior, then generate a small “Hello World” product module.</p>
+
+    <div class="builder-wrap interactive-builder" id="builderCanvas">
+      <div class="builder-shell">
+        <aside class="builder-left">
+          <div>
+            <div class="builder-stage-label">Build logic</div>
+            <h3>Build it step by step.</h3>
+            <p>Use the step tabs to move between tokens, components and product context. The final product updates as your system decisions change.</p>
+
+            <div class="builder-progress">
+              <button class="progress-step active" data-step="1">01 Tokens</button>
+              <button class="progress-step" data-step="2">02 Components</button>
+              <button class="progress-step" data-step="3">03 Product</button>
+            </div>
+          </div>
+
+          <div class="builder-controls">
+            <div class="builder-panel active" data-panel="1">
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Color token</strong><span>primary</span></div>
+                <div class="option-grid">
+                  <button class="builder-option active" data-group="color" data-value="#FF5A1F"><small>Orange</small><b>Builder</b></button>
+                  <button class="builder-option" data-group="color" data-value="#7C8CFF"><small>Blue</small><b>System</b></button>
+                  <button class="builder-option" data-group="color" data-value="#38B86A"><small>Green</small><b>Health</b></button>
+                </div>
+              </div>
+
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Radius token</strong><span>small → medium → big</span></div>
+                <div class="option-grid">
+                  <button class="builder-option" data-group="radius" data-value="8px"><small>Small</small><b>8px</b></button>
+                  <button class="builder-option active" data-group="radius" data-value="16px"><small>Medium</small><b>16px</b></button>
+                  <button class="builder-option" data-group="radius" data-value="24px"><small>Big</small><b>24px</b></button>
+                </div>
+              </div>
+
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Type token</strong><span>small → medium → big</span></div>
+                <div class="option-grid">
+                  <button class="builder-option" data-group="type" data-value="20px"><small>Small</small><b>20px</b></button>
+                  <button class="builder-option active" data-group="type" data-value="24px"><small>Medium</small><b>24px</b></button>
+                  <button class="builder-option" data-group="type" data-value="30px"><small>Big</small><b>30px</b></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="builder-panel" data-panel="2">
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Button scale</strong><span>small → medium → big</span></div>
+                <div class="option-grid">
+                  <button class="builder-option" data-group="size" data-value="40px"><small>Small</small><b>40px</b></button>
+                  <button class="builder-option active" data-group="size" data-value="46px"><small>Medium</small><b>46px</b></button>
+                  <button class="builder-option" data-group="size" data-value="54px"><small>Big</small><b>54px</b></button>
+                </div>
+              </div>
+
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Component density</strong><span>small → medium → big</span></div>
+                <div class="option-grid">
+                  <button class="builder-option" data-group="density" data-value="compact"><small>Small</small><b>Dense</b></button>
+                  <button class="builder-option active" data-group="density" data-value="comfortable"><small>Medium</small><b>Default</b></button>
+                  <button class="builder-option" data-group="density" data-value="spacious"><small>Big</small><b>Airy</b></button>
+                </div>
+              </div>
+
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Card style</strong><span>small → medium → big</span></div>
+                <div class="option-grid">
+                  <button class="builder-option" data-group="surface" data-value="12px"><small>Small</small><b>Dense shell</b></button>
+                  <button class="builder-option active" data-group="surface" data-value="22px"><small>Medium</small><b>Soft surface</b></button>
+                  <button class="builder-option" data-group="surface" data-value="32px"><small>Big</small><b>Glow shell</b></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="builder-panel" data-panel="3">
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Product output</strong><span>context</span></div>
+                <div class="option-grid">
+                  <button class="builder-option active" data-group="product" data-product="Fintech" data-title="Hello, loan flow." data-sub="A compact product module for financial decisions." data-one="14k+" data-two="$4M+" data-three="E2E" data-four="LATAM"><small>Fintech</small><b>Loan UI</b></button>
+                  <button class="builder-option" data-group="product" data-product="Health" data-title="Hello, clinic flow." data-sub="A simple patient task module for medical operations." data-one="80%" data-two="Patients" data-three="Citas" data-four="Ops"><small>Health</small><b>Clinic UI</b></button>
+                  <button class="builder-option" data-group="product" data-product="System" data-title="Hello, design system." data-sub="A reusable interface module assembled from tokens." data-one="3×" data-two="Tokens" data-three="States" data-four="Docs"><small>System</small><b>DS UI</b></button>
+                </div>
+              </div>
+
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Message style</strong><span>tone</span></div>
+                <div class="option-grid">
+                  <button class="builder-option active" data-group="intent" data-value="clarity"><small>Clarity</small><b>Task first</b></button>
+                  <button class="builder-option" data-group="intent" data-value="trust"><small>Trust</small><b>Evidence first</b></button>
+                  <button class="builder-option" data-group="intent" data-value="speed"><small>Speed</small><b>Action first</b></button>
+                </div>
+              </div>
+
+              <div class="builder-group">
+                <div class="builder-group-title"><strong>Editable message</strong><span>custom text</span></div>
+                <textarea class="builder-message" id="builderMessage" rows="4" placeholder="Write your own product message...">A compact product module for financial decisions.</textarea>
+              </div>
+            </div>
+          </div>
+
+          <button class="builder-reset" id="builderReset">Start again ↺</button>
+        </aside>
+
+        <div class="builder-canvas">
+          <div class="builder-live-grid">
+            <div class="token-row">
+              <div class="token live-token"><small>Primary</small><div class="color-swatch"></div><strong id="liveColor">#FF5A1F</strong></div>
+              <div class="token live-token"><small>Radius</small><div class="radius-swatch"></div><strong id="liveRadius">16px</strong></div>
+              <div class="token live-token"><small>Type</small><div class="type-swatch">Aa</div><strong id="liveType">24px</strong></div>
+
+            </div>
+
+            <div class="component-lane">
+              <div class="component-panel">
+                <div class="panel-title">Generated Components</div>
+                <div class="ui-kit" id="liveKit">
+                  <div class="ui-button live-button">Primary action</div>
+                  <div class="ui-input live-input">Input with validation state</div>
+                  <div class="ui-card-mini live-card"><strong id="miniMetric">14k+</strong><span>Reusable metric card</span></div>
+                  <div class="ui-card-mini live-card"><strong id="miniMetricTwo">$4M+</strong><span>Secondary evidence card</span></div>
+                </div>
+              </div>
+
+              <div class="output-panel">
+                <div class="panel-title">Product Output</div>
+                <div class="output-browser">
+                  <div class="browser-top"><i></i><i></i><i></i></div>
+                  <div class="product-output" id="productOutput">
+                    <div class="output-hero live-output-hero">
+                      <strong id="outputTitle">Hello, loan flow.</strong>
+                      <span id="outputSub">A compact product module for financial decisions.</span>
+                    </div>
+                    <div class="output-grid">
+                      <div class="output-tile live-tile"><small>Signal 01</small><strong id="tileOne">14k+</strong></div>
+                      <div class="output-tile live-tile"><small>Signal 02</small><strong id="tileTwo">$4M+</strong></div>
+                      <div class="output-tile live-tile"><small>Signal 03</small><strong id="tileThree">E2E</strong></div>
+                      <div class="output-tile live-tile"><small>Signal 04</small><strong id="tileFour">LATAM</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="builder-character" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="content-section">
+  <div class="section-inner">
+    <div class="kicker">About</div>
+    <h2 class="section-title">Operating system, not a biography.</h2>
+    <p class="lead">My work sits at the intersection of research, design systems, product thinking and interface engineering.</p>
+
+    <div class="about-os">
+      <aside class="about-panel">
+        <h3>I don't design screens.</h3>
+        <p>I investigate problems, build systems and create product interfaces that can scale. My process connects evidence, structure and execution so teams can move with more clarity.</p>
+
+        <div class="about-tags">
+          <span class="about-tag">Healthcare</span>
+          <span class="about-tag">Fintech</span>
+          <span class="about-tag">Design Systems</span>
+          <span class="about-tag">UX Research</span>
+          <span class="about-tag">Product Strategy</span>
+          <span class="about-tag">UI Engineering</span>
+          <span class="about-tag">AI Products</span>
+        </div>
+
+        <div class="direction-card">
+          Product Designer<br>
+          ↓<br>
+          UI Engineer<br>
+          ↓<br>
+          Design Technologist
+        </div>
+
+        <div class="career-timeline">
+          <div class="timeline-title">Career timeline</div>
+          <div class="timeline-list">
+            <div class="timeline-item">
+              <div class="timeline-year">2018 — 2024</div>
+              <div class="timeline-copy"><strong>Visual & UX Foundation</strong><span>From graphic design foundations to product interfaces, research thinking and digital systems.</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024 — 2025</div>
+              <div class="timeline-copy"><strong>Fintech & ERP Products</strong><span>Product design ownership across lending, employee banking, ERP commerce and education financing experiences.</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2025 — Present</div>
+              <div class="timeline-copy"><strong>Enterprise Financial Systems</strong><span>Design system documentation, governance and maintenance for 30+ flows inside a large financial institution.</span></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="about-stack">
+        <article class="os-module">
+          <strong>Research</strong>
+          <span>Understanding people and their behavior before proposing any solution. I enjoy discovering why users act the way they do through interviews, usability testing, user journeys, and information architecture. By analyzing insights and identifying pain points, I can make informed design decisions that create intuitive, accessible, and meaningful experiences instead of relying on assumptions. I believe that strong research is the foundation of every successful product because it ensures that every design decision is backed by real user needs and business goals.</span>
+        </article>
+
+        <article class="os-module">
+          <strong>Systems</strong>
+          <span>Designing reusable foundations that create consistency and scalability across an entire product, not just individual screens. I enjoy building design systems with design tokens, reusable components, interaction states, and clear documentation that help teams work faster while maintaining a cohesive user experience. A well-crafted system improves collaboration between designers and developers, reduces inconsistencies, and makes future product growth more efficient and sustainable.</span>
+        </article>
+
+        <article class="os-module">
+          <strong>Product</strong>
+          <span>Understanding how user needs, business objectives, and technical constraints come together to shape successful digital products. I enjoy thinking beyond individual interfaces by considering the impact of every design decision on the overall product strategy. By balancing usability, feasibility, and business value, I aim to create experiences that solve real problems, support company goals, and deliver meaningful value for both users and stakeholders.</span>
+        </article>
+
+        <article class="os-module">
+          <strong>Engineering</strong>
+          <span>Bringing ideas closer to reality by understanding how designs are built and implemented. I enjoy exploring frontend development, creating interactive prototypes, and experimenting with modern technologies to better connect design and engineering. Thinking about implementation from the beginning helps me design experiences that are not only visually polished but also technically feasible, efficient to build, and consistent across different platforms and devices..</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="content-section">
+  <div class="section-inner">
+    <div class="kicker">Contact</div>
+
+    <div class="contact-shell">
+      <div class="contact-main">
+        <h2>Let's build systems people actually enjoy using.</h2>
+        <p>Whether you're improving an existing product, creating a design system, validating a new idea or scaling a digital experience, I can help turn complexity into clearer product decisions.</p>
+
+        <div class="contact-actions">
+          <a class="contact-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="contact-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="contact-link" href="mailto:erick.suarez.wrs@gmail.com">Email</a>
+        </div>
+      </div>
+
+      <div class="contact-side">
+        <article class="availability-card">
+          <small>Available for</small>
+          <strong>Lead Product Design</strong>
+          <span>Product strategy, research-driven UX and interface systems for complex digital products.</span>
+        </article>
+
+        <article class="availability-card">
+          <small>Also open to</small>
+          <strong>UI Engineering & Design Systems</strong>
+          <span>Bridging Figma, reusable components, frontend-aware UI and scalable product experiences.</span>
+        </article>
+
+        <article class="availability-card">
+          <small>Consulting focus</small>
+          <strong>Healthcare & Fintech</strong>
+          <span>Digital workflows, operational savings, financial product flows and measurable UX outcomes.</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Designed & built by Erick Suárez<br>
+      Product Designer & UI Engineer · Mexico · LATAM
+    </div>
+
+    <div class="footer-meta">
+      <span class="footer-pill">Version 1.0</span>
+      <span class="footer-pill">Built in 2026</span>
+      <span class="footer-pill">Systems · Product · UI</span>
+    </div>
+  </div>
+</footer>
+
+<div class="dialog" id="dialog">
+  <div class="dialog-box">
+    <button class="dialog-close" id="dialogClose">×</button>
+    <aside class="artifact-side">
+      <div class="artifact-clue" id="artifactClue">CLUE 01 · SYSTEMS THAT SCALE</div>
+      <div class="artifact-icon" id="dIcon">🎨</div>
+      <h3 id="dTitle">Design System Artifacts</h3>
+      <p id="dText">Navigate real production-ready interface structures, scalable components and documented UI behavior.</p>
+
+      <div class="artifact-map-label">System map</div>
+      <div class="artifact-nav">
+        <button class="artifact-tab active" data-artifact="artifact"><strong>Design system</strong><span>tokens · components · rules</span></button>
+        <button class="artifact-tab" data-artifact="evidence"><strong>Product evidence</strong><span>production UI · applied system</span></button>
+      </div>
+    </aside>
+
+    <main class="artifact-viewer">
+      <div class="artifact-toolbar">
+        <div class="artifact-title" id="artifactTitle">LIVE ARTIFACT · BUTTONS SYSTEM</div>
+        <div class="artifact-actions">
+          <a class="artifact-action" id="figmaOpen" href="https://www.figma.com/design/TY80nIlLl1DqqLfiWnQy1e/Tradicional-No-Productivo?node-id=1537-40428&t=3qeF6g19nBdIybH6-4" target="_blank" rel="noreferrer">Open in Figma ↗</a>
+          <button class="artifact-action" id="continueExplore">Continue exploring</button>
+        </div>
+      </div>
+      <div class="embed-shell">
+        <iframe id="figmaEmbed" src="https://embed.figma.com/design/TY80nIlLl1DqqLfiWnQy1e/Tradicional-No-Productivo?node-id=1537-40428&embed-host=share" allowfullscreen></iframe>
+        <div class="artifact-image-viewer" id="artifactImageViewer">
+          <div class="artifact-image-stage">
+            <img id="artifactImage" src="" alt="" />
+          </div>
+          <div class="artifact-image-meta">
+            <div class="artifact-image-caption" id="artifactImageCaption"></div>
+            <div class="artifact-image-controls" id="artifactImageControls">
+              <button class="artifact-image-control" id="artifactPrev" type="button" aria-label="Previous evidence">‹</button>
+              <button class="artifact-image-control" id="artifactNext" type="button" aria-label="Next evidence">›</button>
+            </div>
+            <div class="artifact-thumbs" id="artifactThumbs"></div>
+          </div>
+        </div>
+        <div class="artifact-link-viewer" id="artifactLinkViewer">
+          <small id="artifactLinkKicker">External artifact</small>
+          <strong id="artifactLinkTitle">Open artifact</strong>
+          <p id="artifactLinkText">This live artifact opens in a new tab.</p>
+          <a id="artifactLinkCta" href="#" target="_blank" rel="noreferrer">Open link ↗</a>
+        </div>
+      </div>
+      <div class="artifact-footer"><div class="dialog-tags" id="dTags"></div></div>
+    </main>
+  </div>
+</div>
+
+<script>
+/* ambient particles */
+const ambient=document.getElementById('ambient');
+for(let i=0;i<42;i++){
+  const s=document.createElement('span');
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.setProperty('--x',(-100+Math.random()*200)+'px');
+  s.style.setProperty('--y',(-100+Math.random()*200)+'px');
+  s.style.setProperty('--d',(11+Math.random()*13)+'s');
+  s.style.setProperty('--delay',(-Math.random()*18)+'s');
+  ambient.appendChild(s);
+}
+
+/* nav hide/show */
+const nav=document.getElementById('nav');
+let lastY=0;
+function updateNav(){
+  const y=window.scrollY;
+  if(y<20){nav.classList.remove('hidden')}
+  else if(y>lastY+2){nav.classList.add('hidden')}
+  else if(y<lastY-2){nav.classList.remove('hidden')}
+  lastY=y;
+}
+window.addEventListener('scroll',updateNav,{passive:true});
+
+/* theme */
+const root=document.documentElement;
+const themeSwitch=document.getElementById('themeSwitch');
+const themeText=document.getElementById('themeText');
+function syncTheme(){themeText.textContent=root.dataset.theme==='dark'?'dark':'light'}
+syncTheme();
+themeSwitch.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';syncTheme()});
+
+/* artifact modal */
+const dialog=document.getElementById('dialog');
+const figmaButtons={
+  embed:'https://embed.figma.com/design/TY80nIlLl1DqqLfiWnQy1e/Tradicional-No-Productivo?node-id=1537-40428&embed-host=share',
+  open:'https://www.figma.com/design/TY80nIlLl1DqqLfiWnQy1e/Tradicional-No-Productivo?node-id=1537-40428&t=3qeF6g19nBdIybH6-4'
+};
+const artifacts={
+  artifact:{title:'LIVE ARTIFACT · PRIMARY FRAME',...figmaButtons},
+  evidence:{title:'LIVE ARTIFACT · PROCESS EVIDENCE',...figmaButtons},
+  outcome:{title:'LIVE ARTIFACT · OUTCOME STATES',...figmaButtons}
+};
+let activeArtifacts=artifacts;
+const artifactNavLabels={
+  artifact:{title:'Design system',meta:'tokens · components · rules'},
+  evidence:{title:'Product evidence',meta:'production UI · applied system'},
+  flow:{title:'Flow version',meta:'screens · structure · logic'},
+  outcome:{title:'Outcome states',meta:'results · variants · scale'}
+};
+function renderArtifactNav(){
+  const nav=document.querySelector('.artifact-nav');
+  nav.innerHTML='';
+  Object.keys(activeArtifacts).forEach((key,index)=>{
+    const artifact=activeArtifacts[key] || {};
+    const label=artifactNavLabels[key] || {title:key,meta:'artifact'};
+    const button=document.createElement('button');
+    button.className='artifact-tab'+(index===0?' active':'');
+    button.dataset.artifact=key;
+    button.type='button';
+    button.innerHTML=`<strong>${artifact.navTitle || label.title}</strong><span>${artifact.navMeta || label.meta}</span>`;
+    button.addEventListener('click',()=>setArtifact(key));
+    nav.appendChild(button);
+  });
+}
+function setArtifactImage(artifact,index=0){
+  const images=artifact.images || [{src:artifact.embed,alt:artifact.alt || artifact.title,caption:artifact.caption || artifact.title}];
+  const image=images[index] || images[0];
+  const img=document.getElementById('artifactImage');
+  const caption=document.getElementById('artifactImageCaption');
+  const thumbs=document.getElementById('artifactThumbs');
+  const controls=document.getElementById('artifactImageControls');
+  const prev=document.getElementById('artifactPrev');
+  const next=document.getElementById('artifactNext');
+  const stage=document.querySelector('.artifact-image-stage');
+
+  img.src=image.src;
+  img.alt=image.alt || image.label || artifact.title || 'Product evidence';
+  stage.style.setProperty('--artifact-bg', `url("${image.src}")`);
+  caption.textContent=image.caption || image.label || artifact.title || '';
+  thumbs.innerHTML='';
+  controls.style.display=images.length>1?'flex':'none';
+  prev.disabled=index===0;
+  next.disabled=index===images.length-1;
+  prev.onclick=()=>setArtifactImage(artifact,Math.max(0,index-1));
+  next.onclick=()=>setArtifactImage(artifact,Math.min(images.length-1,index+1));
+
+  if(images.length>1){
+    images.forEach((entry,i)=>{
+      const b=document.createElement('button');
+      b.className='artifact-thumb'+(i===index?' active':'');
+      b.type='button';
+      b.textContent=entry.label || `Screen ${i+1}`;
+      b.addEventListener('click',()=>setArtifactImage(artifact,i));
+      thumbs.appendChild(b);
+    });
+  }
+}
+function setArtifact(key){
+  const a=activeArtifacts[key]||activeArtifacts.artifact;
+  const shell=document.querySelector('.embed-shell');
+  const iframe=document.getElementById('figmaEmbed');
+  document.querySelectorAll('.artifact-tab').forEach(b=>b.classList.toggle('active',b.dataset.artifact===key));
+  document.getElementById('artifactTitle').textContent=a.title;
+  document.getElementById('figmaOpen').href=a.open;
+  document.getElementById('figmaOpen').textContent=a.actionLabel || 'Open in Figma ↗';
+
+  if(a.type==='image'){
+    shell.classList.remove('is-link');
+    shell.classList.add('is-image');
+    iframe.removeAttribute('src');
+    setArtifactImage(a);
+  }else if(a.type==='link'){
+    shell.classList.remove('is-image');
+    shell.classList.add('is-link');
+    iframe.removeAttribute('src');
+    document.getElementById('artifactImage').removeAttribute('src');
+    document.getElementById('artifactImageCaption').textContent='';
+    document.getElementById('artifactThumbs').innerHTML='';
+    document.querySelector('.artifact-image-stage').style.removeProperty('--artifact-bg');
+    document.getElementById('artifactLinkKicker').textContent=a.kicker || 'External artifact';
+    document.getElementById('artifactLinkTitle').textContent=a.linkTitle || a.title || 'Open artifact';
+    document.getElementById('artifactLinkText').textContent=a.linkText || 'This live artifact opens in a new tab.';
+    document.getElementById('artifactLinkCta').href=a.open;
+    document.getElementById('artifactLinkCta').textContent=a.ctaLabel || a.actionLabel || 'Open link ↗';
+  }else{
+    shell.classList.remove('is-image','is-link');
+    iframe.src=a.embed;
+    document.getElementById('artifactImage').removeAttribute('src');
+    document.getElementById('artifactImageCaption').textContent='';
+    document.getElementById('artifactThumbs').innerHTML='';
+    document.querySelector('.artifact-image-stage').style.removeProperty('--artifact-bg');
+  }
+}
+document.querySelectorAll('.artifact-tab').forEach(btn=>btn.addEventListener('click',()=>setArtifact(btn.dataset.artifact)));
+function openDialog(it){
+  const side=document.querySelector('.artifact-side');
+  side.classList.add('case-mode');
+  side.classList.toggle('has-artifact-tabs', !!it.artifacts);
+  activeArtifacts=it.artifacts || {
+    artifact:{type:it.type,title:it.artifactTitle || 'LIVE ARTIFACT · PRIMARY FRAME',embed:it.embed || figmaButtons.embed,open:it.open || figmaButtons.open,actionLabel:it.actionLabel,linkTitle:it.linkTitle,linkText:it.linkText,ctaLabel:it.ctaLabel},
+    evidence:{title:it.artifactTitle || 'LIVE ARTIFACT · PROCESS EVIDENCE',embed:it.embed || figmaButtons.embed,open:it.open || figmaButtons.open,actionLabel:it.actionLabel},
+    outcome:{title:it.artifactTitle || 'LIVE ARTIFACT · OUTCOME STATES',embed:it.embed || figmaButtons.embed,open:it.open || figmaButtons.open,actionLabel:it.actionLabel}
+  };
+  renderArtifactNav();
+
+  document.getElementById('artifactClue').textContent=it.clue || 'CASE ARTIFACT';
+  document.getElementById('dIcon').textContent=it.emoji || '◼';
+  document.getElementById('dTitle').textContent=it.title || 'Portfolio Artifact';
+  document.getElementById('dText').textContent=it.text || 'Evidence artifact.';
+
+  let evidence=document.getElementById('caseEvidence');
+  if(!evidence){
+    evidence=document.createElement('div');
+    evidence.id='caseEvidence';
+    evidence.className='case-evidence';
+    document.getElementById('dText').insertAdjacentElement('afterend', evidence);
+  }
+
+  const kpis=(it.kpis||[]).map(k=>`<div class="case-kpi"><strong>${k[0]}</strong><span>${k[1]}</span></div>`).join('');
+  evidence.innerHTML=`
+    <div class="case-block"><small>Problem</small><p>${it.problem || 'Problem statement pending.'}</p></div>
+    <div class="case-block"><small>Solution</small><p>${it.solution || 'Solution statement pending.'}</p></div>
+    <div class="case-block"><small>Outcome</small><p>${it.outcome || 'Outcome pending.'}</p>${kpis?`<div class="case-kpis">${kpis}</div>`:''}</div>
+    <div class="case-block"><small>My role</small><p class="case-lines">${it.role || 'Role pending.'}</p></div>
+    <div class="case-block"><small>Artifact</small><p>${it.artifact || 'Artifact pending.'}</p></div>
+  `;
+
+  const tags=document.getElementById('dTags');tags.innerHTML='';
+  (it.tags||['ARTIFACT']).forEach(t=>{let s=document.createElement('span');s.className='dtag';s.textContent=t;tags.appendChild(s)});
+
+  setArtifact('artifact');
+  dialog.classList.add('active');
+}
+document.getElementById('dialogClose').onclick=()=>dialog.classList.remove('active');
+document.getElementById('continueExplore').onclick=()=>dialog.classList.remove('active');
+dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.classList.remove('active')});
+window.addEventListener('keydown',e=>{if(e.key==='Escape')dialog.classList.remove('active')});
+
+/* canvas game */
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d'),W=900,H=420;
+const scoreEl=document.getElementById('score');
+const C={bg:'#090909',surface:'#121212',card:'#181818',border:'#2A2A2A',primary:'#FF5A1F',soft:'#FF7A45',text:'#F3F0EB',text2:'#B7B1A8',muted:'#7C766D',success:'#38B86A',warning:'#FFB347',blue:'#7C8CFF',rose:'#E11D48'};
+const items=[
+  {
+    x:170,y:245,emoji:'🏥',label:'Clinic DS',color:C.blue,
+    title:'Leey Lany · Bariatra Design System',
+    clue:'CASE 01 · BARIATRIC CARE',
+    text:'A clinical platform for bariatric patient management, appointment scheduling, medical records and automated follow-up.',
+    tags:['BARIATRIC CARE','APPOINTMENTS','DESIGN SYSTEM'],
+    problem:'Bariatric clinics needed a clearer way to manage patients, appointments, clinical records, nutritional follow-up and automated reminders.',
+    solution:'Designed and developed a clinical platform with appointment scheduling, patient records, nutrition tracking, reminders and a branded design system.',
+    outcome:'Reduced administrative friction and improved patient follow-up across daily clinic operations.',
+    role:'Product Designer & UX Engineer\nInformation Architecture\nUX Research\nDesign Systems\nFrontend Development',
+    artifact:'Design System + Production Appointment Screen',
+    artifacts:{
+      artifact:{title:'LIVE ARTIFACT · LEEY LANY DESIGN SYSTEM',embed:'assets/figma/medicore_design_system_spec.html',open:'assets/figma/medicore_design_system_spec.html',actionLabel:'Open design system ↗'},
+      evidence:{
+        title:'PRODUCT EVIDENCE · PRODUCTION SCREENS',
+        type:'image',
+        open:'assets/product/leey-lany-citas-production.png',
+        actionLabel:'Open image ↗',
+        images:[
+          {label:'01 Appointments',src:'assets/product/leey-lany-citas-production.png',alt:'Leey Lany appointments production screen',caption:'01 · Appointments · monthly schedule, patient status and reminder actions'},
+          {label:'02 Patient Interior',src:'assets/product/leey-lany-interior-paciente.png',alt:'Leey Lany patient detail production screen',caption:'02 · Patient interior · clinical summary, private panel and patient record navigation'},
+          {label:'03 Clinical Visit',src:'assets/product/leey-lany-modal-nueva-visita.png',alt:'Leey Lany clinical visit modal production screen',caption:'03 · Clinical visit · episode capture, narrative notes and reference history'}
+        ]
+      }
+    },
+    kpis:[['Stack','Next.js · TypeScript · Supabase'],['Tools','Figma · Tailwind · Vercel']]
+  },
+  {
+    x:325,y:180,emoji:'🏦',label:'Enterprise DS',color:C.primary,
+    title:'Enterprise Financial Design System',
+    clue:'CASE 02 · LARGE FINANCIAL INSTITUTION',
+    text:'A scalable design system for a national financial institution with regional presence in Guatemala and El Salvador.',
+    tags:['ENTERPRISE','FINANCIAL SERVICES','30+ FLOWS'],
+    problem:'30+ financial flows required consistency.',
+    solution:'Created, documented and maintained design system foundations, plus a high-fidelity research prototype with variant-based inputs.',
+    outcome:'Consistency at scale. Shared components. Faster delivery cycles. Research timing signals for average completion.',
+    role:'Design Systems\nDocumentation\nGovernance\nComponent Design\nHigh-fidelity Prototyping',
+    artifact:'Enterprise Financial Design System + Research Prototype',
+    artifacts:{
+      artifact:{
+        title:'LIVE ARTIFACT · ENTERPRISE FINANCIAL DESIGN SYSTEM',
+        embed:'https://embed.figma.com/design/m26biHSlta91XYMEwIc8rx/DS---inv?node-id=40000009-15948&embed-host=share',
+        open:'https://www.figma.com/design/m26biHSlta91XYMEwIc8rx/DS---inv?node-id=40000009-15948&t=LwD8ZC6bMFmnbbjw-1',
+        actionLabel:'Open in Figma ↗'
+      },
+      evidence:{
+        navTitle:'Research prototype',
+        navMeta:'timing · inputs · validation',
+        title:'HIGH-FIDELITY PROTOTYPE · RESEARCH TIMING FLOW',
+        embed:'https://embed.figma.com/proto/3vkjc7dAINoNnsoszGQnph/Prototipo-investigaci%C3%B3n?node-id=3208-170571&viewport=1325%2C2048%2C0.02&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3208%3A170571&show-proto-sidebar=1&page-id=279%3A60818&embed-host=share',
+        open:'https://www.figma.com/proto/3vkjc7dAINoNnsoszGQnph/Prototipo-investigaci%C3%B3n?node-id=3208-170571&viewport=1325%2C2048%2C0.02&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3208%3A170571&show-proto-sidebar=1&page-id=279%3A60818',
+        actionLabel:'Open prototype ↗'
+      },
+      flow:{
+        title:'FLOW VERSION · ENTERPRISE RESEARCH STRUCTURE',
+        embed:'https://embed.figma.com/design/3vkjc7dAINoNnsoszGQnph/FLOW---ENTREPRISE?node-id=3211-201074&embed-host=share',
+        open:'https://www.figma.com/design/3vkjc7dAINoNnsoszGQnph/FLOW---ENTREPRISE?node-id=3211-201074',
+        actionLabel:'Open flow ↗'
+      }
+    },
+    kpis:[['Context','National financial institution'],['Regional','Mexico · Guatemala · El Salvador']]
+  },
+  {
+    x:500,y:255,emoji:'💳',label:'Fintech',color:C.warning,
+    title:'Silver Capital · Employee Banking Platform',
+    clue:'CASE 03 · FINTECH PRODUCT DESIGN',
+    text:'A financial platform for employees to access loans, credit cards and debt acquisition options through an AI-supported decision experience.',
+    tags:['FINTECH','EMPLOYEE BANKING','AI MATCHING'],
+    problem:'Employees needed access to better financial products.',
+    solution:'Designed onboarding, loans, debt acquisition and decision flows.',
+    outcome:'500+ employees onboarded.',
+    role:'Solo Product Designer\nUX Research\nUsability Testing\nDesign System\nProduct Design',
+    artifact:'Employee Banking Platform',
+     artifact:'Enterprise Financial Design System + Research Prototype',
+    artifacts:{
+      artifact:{
+        title:'LIVE ARTIFACT · ENTERPRISE FINANCIAL DESIGN SYSTEM',
+        embed:'https://embed.figma.com/design/m26biHSlta91XYMEwIc8rx/DS---inv?node-id=40000009-15948&embed-host=share',
+        open:'https://www.figma.com/design/m26biHSlta91XYMEwIc8rx/DS---inv?node-id=40000009-15948&t=LwD8ZC6bMFmnbbjw-1',
+        actionLabel:'Open in Figma ↗'
+      },
+      evidence:{
+        navTitle:'Research prototype',
+        navMeta:'timing · inputs · validation',
+        title:'HIGH-FIDELITY PROTOTYPE · RESEARCH TIMING FLOW',
+        embed:'https://embed.figma.com/proto/3vkjc7dAINoNnsoszGQnph/Prototipo-investigaci%C3%B3n?node-id=3208-170571&viewport=1325%2C2048%2C0.02&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3208%3A170571&show-proto-sidebar=1&page-id=279%3A60818&embed-host=share',
+        open:'https://www.figma.com/proto/3vkjc7dAINoNnsoszGQnph/Prototipo-investigaci%C3%B3n?node-id=3208-170571&viewport=1325%2C2048%2C0.02&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3208%3A170571&show-proto-sidebar=1&page-id=279%3A60818',
+        actionLabel:'Open prototype ↗'
+      },
+      flow:{
+        title:'FLOW VERSION · ENTERPRISE RESEARCH STRUCTURE',
+        embed:'https://embed.figma.com/design/3vkjc7dAINoNnsoszGQnph/FLOW---ENTREPRISE?node-id=3211-201074&embed-host=share',
+        open:'https://www.figma.com/design/3vkjc7dAINoNnsoszGQnph/FLOW---ENTREPRISE?node-id=3211-201074',
+        actionLabel:'Open flow ↗'
+      }
+    },
+    kpis:[['500+','employees onboarded'],['0 → 1','product design ownership']]
+  },
+  {
+    x:665,y:158,emoji:'🧩',label:'ERP – Sales',color:C.success,
+    title:'Hyvel · ERP Commerce & Education Financing',
+    clue:'CASE 04 · MULTI-PRODUCT PLATFORM',
+    text:'A set of product experiences for B2B procurement and education financing, designed for operational clarity and conversion.',
+    tags:['ERP','ECOMMERCE','EDUCATION FINANCING'],
+    problem:'Organizations needed a more efficient procurement experience that reduced costs, simplified purchasing, and provided direct access to manufacturers.',
+    solution:'Designed ERP and e-commerce procurement workflows that streamlined purchasing and improved the overall buying experience.',
+    outcome:'Delivered a scalable multi-product platform strategy that unified ERP and e-commerce experiences, enabling faster procurement, improved operational efficiency, and long-term business growth.',
+    role:'Product Designer\nResearch\nBenchmarking\nUX/UI',
+    artifact:'ERP Commerce Platform',
+     artifact:'Enterprise Financial Design System + Flow',
+    artifacts:{
+      artifact:{
+        title:'LIVE ARTIFACT · ENTERPRISE FINANCIAL DESIGN SYSTEM',
+        embed:'https://embed.figma.com/design/bulOfZG8K3EVEPmXGrCZAE/HYVEL-FULL-2025?node-id=121-19681&embed-host=share',
+        open:'https://www.figma.com/design/m26biHSlta91XYMEwIc8rx/DS---inv?node-id=40000009-16392',
+        actionLabel:'Open in Figma ↗'
+      },
+      evidence:{
+        navTitle:'Research prototype',
+        navMeta:'timing · inputs · validation',
+        title:'HIGH-FIDELITY PROTOTYPE · FLOW',
+        embed:'https://www.figma.com/proto/bulOfZG8K3EVEPmXGrCZAE/HYVEL-FULL-2025?node-id=7439-91429&p=f&viewport=6841%2C-1689%2C0.08&t=H3Jh8rs6s4D3qAHz-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=6411%3A37338&page-id=2%3A1334',
+        open:'https://www.figma.com/design/bulOfZG8K3EVEPmXGrCZAE/HYVEL-FULL-2025?node-id=2-1334',
+        actionLabel:'Open prototype ↗'
+      }
+    },
+    kpis:[['Categories','Medical supplies · Cleaning Supplies · Office Supplies · Food'],['100+','Mexican companies affiliated with the platform'],['Up to $50 MXN','saved per product purchased.'],['100+','brands offering direct factory pricing.']]
+  },
+  {
+    x:805,y:235,emoji:'⚡',label:'erick.dev',color:C.rose,
+    title:'Erick.dev · Interactive Portfolio System',
+    clue:'CASE 05 · UI ENGINEERING SHOWCASE',
+    text:'An interactive portfolio that turns career evidence into playable artifacts, product metrics and a live system builder.',
+    tags:['UI ENGINEERING','PORTFOLIO','SYSTEM BUILDER'],
+    problem:'Traditional portfolios rarely explain thinking.',
+    solution:'Created a playable portfolio with collectibles, metrics and a live system builder.',
+    outcome:'Interactive portfolio. UI Engineering showcase.',
+    role:'Product Narrative\nUI Engineering\nInteraction Design',
+    artifact:'System Builder',
+    type:'link',
+    embed:'https://5vk42g.csb.app/',
+    open:'https://5vk42g.csb.app/',
+    artifactTitle:'LIVE ARTIFACT · ERICK.DEV PLAYABLE PORTFOLIO',
+    actionLabel:'Open erick.dev ↗',
+    linkTitle:'Erick.dev playable portfolio',
+    linkText:'The live prototype is available as an external interactive experience.',
+    ctaLabel:'Open erick.dev ↗',
+    kpis:[['v1.0','interactive portfolio'],['Live','tokens → components → product']]
+  }
+];
+const platforms=[
+  {x:0,y:340,w:W,h:80,base:340,amp:0,phase:0},
+  {x:110,y:292,w:120,h:12,base:292,amp:7,phase:.2},
+  {x:285,y:222,w:128,h:12,base:222,amp:9,phase:1.2},
+  {x:456,y:292,w:115,h:12,base:292,amp:6,phase:2.1},
+  {x:620,y:195,w:132,h:12,base:195,amp:8,phase:2.8},
+  {x:760,y:275,w:108,h:12,base:275,amp:7,phase:3.5}
+];
+const keys={};
+const player={x:56,y:280,w:24,h:36,vx:0,vy:0,on:false,face:1,frame:0,trail:[]};
+let collected=new Set(),particlesGame=[];
+window.addEventListener('keydown',e=>{
+  const target=e.target;
+  const isTyping=target && (
+    target.tagName==='INPUT' ||
+    target.tagName==='TEXTAREA' ||
+    target.isContentEditable
+  );
+  if(isTyping) return;
+
+  keys[e.code]=true;
+  if(['ArrowLeft','ArrowRight','ArrowUp','Space','KeyW','KeyA','KeyD'].includes(e.code))e.preventDefault();
+});
+window.addEventListener('keyup',e=>{
+  const target=e.target;
+  const isTyping=target && (
+    target.tagName==='INPUT' ||
+    target.tagName==='TEXTAREA' ||
+    target.isContentEditable
+  );
+  if(isTyping) return;
+  keys[e.code]=false;
+});
+canvas.addEventListener('click',()=>canvas.focus());
+function pop(x,y,color,n=12){for(let i=0;i<n;i++){let a=Math.random()*Math.PI*2,s=1+Math.random()*4;particlesGame.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-2,a:1,r:2+Math.random()*4,color})}}
+function update(){
+  let t=performance.now()/1000;
+  platforms.forEach(p=>p.y=p.base+(p.amp?Math.sin(t*1.3+p.phase)*p.amp:0));
+  let speed=4.5;
+  if(keys.ArrowLeft||keys.KeyA){player.vx=-speed;player.face=-1}
+  else if(keys.ArrowRight||keys.KeyD){player.vx=speed;player.face=1}
+  else player.vx*=.78;
+  if((keys.Space||keys.ArrowUp||keys.KeyW)&&player.on){player.vy=-13;player.on=false;pop(player.x+12,player.y+35,C.primary,8)}
+  player.vy+=.55;player.x+=player.vx;player.y+=player.vy;
+  if(player.x>W+player.w)player.x=-player.w;
+  if(player.x<-player.w)player.x=W+player.w;
+  player.on=false;
+  for(const p of platforms){
+    if(player.x+player.w>p.x&&player.x<p.x+p.w){
+      const feet=player.y+player.h,prev=feet-player.vy;
+      if(prev<=p.y&&feet>=p.y&&player.vy>=0){player.y=p.y-player.h;player.vy=0;player.on=true}
+    }
+  }
+  if(player.y>340-player.h){player.y=340-player.h;player.vy=0;player.on=true}
+  if(Math.abs(player.vx)>1){player.frame=(player.frame+.16)%4;player.trail.push({x:player.x+12,y:player.y+18,a:.35,r:8})}
+  player.trail=player.trail.filter(q=>(q.a-=.035)>0);
+  items.forEach((it,i)=>{
+    if(collected.has(i))return;
+    let dx=player.x+12-it.x,dy=player.y+18-it.y;
+    if(Math.abs(dx)<32&&Math.abs(dy)<32){
+      collected.add(i);scoreEl.textContent=collected.size;pop(it.x,it.y,it.color,24);openDialog(it)
+    }
+  });
+  particlesGame=particlesGame.filter(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.a-=.03;p.r-=.03;return p.a>0});
+}
+function drawCloud(x,y,s){ctx.fillStyle='rgba(255,255,255,.06)';ctx.fillRect(x,y,18*s,8*s);ctx.fillRect(x+8*s,y-8*s,24*s,16*s);ctx.fillRect(x+28*s,y,20*s,8*s)}
+function drawPlayer(){
+  ctx.save();ctx.translate(Math.round(player.x+12),Math.round(player.y+18));if(player.face<0)ctx.scale(-1,1);
+  ctx.shadowColor=C.primary;ctx.shadowBlur=10;ctx.fillStyle=C.primary;ctx.fillRect(-10,-12,20,23);ctx.shadowBlur=0;
+  ctx.fillStyle=C.soft;ctx.fillRect(-8,-12,16,5);
+  ctx.fillStyle=C.text;ctx.fillRect(-9,-28,18,16);
+  ctx.fillStyle='#27272A';ctx.fillRect(-9,-30,18,6);
+  ctx.fillStyle='#050508';ctx.fillRect(2,-24,4,4);
+  let swing=player.on?Math.sin(player.frame/4*Math.PI*2)*5:0;
+  ctx.fillStyle='#111119';ctx.fillRect(-7,10,6,12+swing*.2);ctx.fillRect(3,10,6,12-swing*.2);
+  ctx.fillStyle=C.blue;ctx.fillRect(-8,21,8,4);ctx.fillRect(2,21,8,4);
+  ctx.fillStyle=C.soft;ctx.fillRect(-14,-8,5,13);ctx.fillRect(9,-8,5,13);
+  ctx.restore();
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const grad=ctx.createLinearGradient(0,0,0,H);grad.addColorStop(0,'#111111');grad.addColorStop(1,'#070707');ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(255,90,31,.055)';for(let x=0;x<W;x+=36)ctx.fillRect(x,0,1,H);for(let y=0;y<H;y+=36)ctx.fillRect(0,y,W,1);
+  drawCloud(80,80,1);drawCloud(560,62,1.2);drawCloud(735,112,.9);
+  platforms.forEach(p=>{
+    if(p.h>40){ctx.fillStyle='#141414';ctx.fillRect(p.x,p.y,p.w,p.h);ctx.fillStyle='rgba(255,90,31,.2)';ctx.fillRect(p.x,p.y,p.w,3)}
+    else{ctx.fillStyle='#242424';ctx.fillRect(p.x,p.y,p.w,p.h);ctx.fillStyle='rgba(255,122,69,.45)';ctx.fillRect(p.x,p.y,p.w,2)}
+  });
+  let t=performance.now()/1000;
+  items.forEach((it,i)=>{
+    if(collected.has(i)){ctx.globalAlpha=.22;ctx.fillStyle=it.color;ctx.font='24px serif';ctx.textAlign='center';ctx.fillText('✓',it.x,it.y+8);ctx.globalAlpha=1;return}
+    let bob=Math.sin(t*2+i)*5;
+    ctx.globalAlpha=.22;ctx.fillStyle=it.color;ctx.fillRect(it.x-24,it.y+bob-24,48,48);ctx.globalAlpha=1;
+    ctx.fillStyle='#171717';ctx.fillRect(it.x-18,it.y+bob-18,36,36);ctx.strokeStyle=it.color;ctx.lineWidth=2;ctx.strokeRect(it.x-18,it.y+bob-18,36,36);
+    ctx.font='18px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(it.emoji,it.x,it.y+bob);
+    ctx.font='700 10px Space Mono';ctx.textBaseline='top';ctx.fillStyle=it.color;ctx.fillText(it.label,it.x,it.y+bob+24);
+  });
+  player.trail.forEach(tr=>{ctx.globalAlpha=tr.a*.45;ctx.fillStyle=C.primary;ctx.beginPath();ctx.arc(tr.x,tr.y,tr.r,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;
+  drawPlayer();
+  particlesGame.forEach(p=>{ctx.globalAlpha=p.a;ctx.fillStyle=p.color;ctx.fillRect(Math.round(p.x),Math.round(p.y),Math.max(2,Math.round(p.r)),Math.max(2,Math.round(p.r)))});ctx.globalAlpha=1;
+}
+function loop(){update();draw();requestAnimationFrame(loop)}
+loop();
+
+/* interactive system builder */
+const builderCanvas=document.getElementById('builderCanvas');
+const liveColor=document.getElementById('liveColor');
+const liveRadius=document.getElementById('liveRadius');
+const liveType=document.getElementById('liveType');
+const outputTitle=document.getElementById('outputTitle');
+const outputSub=document.getElementById('outputSub');
+const tileOne=document.getElementById('tileOne');
+const tileTwo=document.getElementById('tileTwo');
+const tileThree=document.getElementById('tileThree');
+const tileFour=document.getElementById('tileFour');
+const miniMetric=document.getElementById('miniMetric');
+const miniMetricTwo=document.getElementById('miniMetricTwo');
+const liveKit=document.getElementById('liveKit');
+const productOutput=document.getElementById('productOutput');
+const builderMessage=document.getElementById('builderMessage');
+
+function goBuilderStep(step){
+  document.querySelectorAll('.builder-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===String(step)));
+  document.querySelectorAll('.progress-step').forEach(p=>p.classList.toggle('active',p.dataset.step===String(step)));
+}
+
+function setBuilderOption(button){
+  const group=button.dataset.group;
+  document.querySelectorAll(`.builder-option[data-group="${group}"]`).forEach(b=>b.classList.remove('active'));
+  button.classList.add('active');
+
+  if(group==='color'){
+    const color=button.dataset.value;
+    builderCanvas.style.setProperty('--builder-accent',color);
+    liveColor.textContent=color;
+  }
+
+  if(group==='radius'){
+    const radius=button.dataset.value;
+    builderCanvas.style.setProperty('--builder-radius',radius);
+    liveRadius.textContent=radius;
+  }
+
+  if(group==='type'){
+    const type=button.dataset.value;
+    builderCanvas.style.setProperty('--builder-title-size',type);
+    liveType.textContent=type;
+  }
+
+  if(group==='size'){
+    builderCanvas.style.setProperty('--builder-size',button.dataset.value);
+  }
+
+  if(group==='surface'){
+    const surface=button.dataset.value;
+    builderCanvas.style.setProperty('--builder-surface-radius',surface);
+    builderCanvas.style.setProperty('--builder-browser-radius',surface);
+
+    if(surface==='32px'){
+      builderCanvas.style.setProperty('--builder-surface-bg','linear-gradient(145deg, color-mix(in srgb, var(--builder-accent) 12%, var(--card)), color-mix(in srgb, var(--card2) 92%, transparent))');
+      builderCanvas.style.setProperty('--builder-surface-border','color-mix(in srgb, var(--builder-accent) 45%, var(--border))');
+      builderCanvas.style.setProperty('--builder-surface-shadow','0 24px 70px color-mix(in srgb, var(--builder-accent) 18%, transparent)');
+      builderCanvas.style.setProperty('--builder-surface-glow','color-mix(in srgb, var(--builder-accent) 28%, transparent)');
+    }
+
+    if(surface==='22px'){
+      builderCanvas.style.setProperty('--builder-surface-bg','color-mix(in srgb, var(--surface) 86%, transparent)');
+      builderCanvas.style.setProperty('--builder-surface-border','var(--border)');
+      builderCanvas.style.setProperty('--builder-surface-shadow','none');
+      builderCanvas.style.setProperty('--builder-surface-glow','color-mix(in srgb, var(--builder-accent) 10%, transparent)');
+    }
+
+    if(surface==='12px'){
+      builderCanvas.style.setProperty('--builder-surface-bg','color-mix(in srgb, var(--bg) 88%, var(--card))');
+      builderCanvas.style.setProperty('--builder-surface-border','color-mix(in srgb, var(--text) 18%, var(--border))');
+      builderCanvas.style.setProperty('--builder-surface-shadow','inset 0 0 0 1px color-mix(in srgb, var(--text) 6%, transparent)');
+      builderCanvas.style.setProperty('--builder-surface-glow','transparent');
+    }
+  }
+
+  if(group==='density'){
+    const value=button.dataset.value;
+    liveKit.style.gap=value==='compact'?'8px':value==='spacious'?'18px':'12px';
+    productOutput.style.gap=value==='compact'?'8px':value==='spacious'?'18px':'12px';
+  }
+
+  if(group==='product'){
+    outputTitle.textContent=button.dataset.title;
+    outputSub.textContent=button.dataset.sub;
+    if(builderMessage) builderMessage.value=button.dataset.sub;
+    tileOne.textContent=button.dataset.one;
+    tileTwo.textContent=button.dataset.two;
+    tileThree.textContent=button.dataset.three;
+    tileFour.textContent=button.dataset.four;
+    miniMetric.textContent=button.dataset.one;
+    miniMetricTwo.textContent=button.dataset.two;
+  }
+
+  if(group==='intent'){
+    const value=button.dataset.value;
+    const hero=document.querySelector('.live-output-hero');
+    hero.dataset.intent=value;
+    if(value==='clarity') outputTitle.textContent='Hello, clear flow.';
+    if(value==='trust') outputTitle.textContent='Hello, evidence flow.';
+    if(value==='speed') outputTitle.textContent='Hello, action flow.';
+    if(builderMessage) outputSub.textContent=builderMessage.value;
+  }
+}
+
+document.querySelectorAll('.builder-option').forEach(button=>{
+  button.addEventListener('click',()=>setBuilderOption(button));
+});
+
+document.querySelectorAll('.progress-step').forEach(button=>{
+  button.addEventListener('click',()=>goBuilderStep(button.dataset.step));
+});
+
+document.querySelectorAll('.builder-nav').forEach(button=>{
+  button.addEventListener('click',()=>goBuilderStep(button.dataset.next));
+});
+
+builderMessage?.addEventListener('input',()=>{
+  outputSub.textContent=builderMessage.value || 'Write your own product message.';
+});
+
+document.getElementById('builderReset')?.addEventListener('click',()=>{
+  document.querySelector('.builder-option[data-group="color"][data-value="#FF5A1F"]').click();
+  document.querySelector('.builder-option[data-group="radius"][data-value="16px"]').click();
+  document.querySelector('.builder-option[data-group="type"][data-value="24px"]').click();
+  document.querySelector('.builder-option[data-group="size"][data-value="46px"]').click();
+  document.querySelector('.builder-option[data-group="density"][data-value="comfortable"]').click();
+  document.querySelector('.builder-option[data-group="surface"][data-value="22px"]').click();
+  document.querySelector('.builder-option[data-group="product"][data-product="Fintech"]').click();
+  if(builderMessage) builderMessage.value='A compact product module for financial decisions.';
+  document.querySelector('.builder-option[data-group="intent"][data-value="clarity"]').click();
+  goBuilderStep(1);
+});
+</script>
+</body>
+</html>

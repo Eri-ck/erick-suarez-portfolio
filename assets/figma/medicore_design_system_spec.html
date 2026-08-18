@@ -1,0 +1,1429 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --color-purple:#6B3FA0;
+  --color-purple-light:#9B6FCA;
+  --color-purple-dark:#4A2878;
+  --color-purple-50:#F5EFF9;
+  --color-purple-100:#E4D4F2;
+  --color-teal:#52B2A5;
+  --color-teal-light:#7ECDC4;
+  --color-teal-dark:#3A8A7E;
+  --color-teal-50:#EDF7F6;
+  --color-teal-100:#C3E9E5;
+  --color-nude:#F4C8B5;
+  --color-nude-dark:#D9906E;
+  --color-nude-50:#FDF5F1;
+  --color-gray:#6D6E71;
+  --color-gray-light:#B0B1B4;
+  --color-gray-50:#F8F8F9;
+  --color-black:#1A1228;
+  --color-white:#FFFFFF;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-body:'Montserrat',system-ui,sans-serif;
+  --font-sans:var(--ff-body);
+  --font-display:var(--ff-display);
+  --font-mono:'Space Mono',monospace;
+  --color-text-primary:var(--color-black);
+  --color-text-secondary:#6D6E71;
+  --color-text-tertiary:#B0B1B4;
+  --color-background-primary:#FFFFFF;
+  --color-background-secondary:#F8F8F9;
+  --color-border-primary:#B0B1B4;
+  --color-border-secondary:#D8D3DC;
+  --color-border-tertiary:#ECE7EF;
+  --border-radius-md:10px;
+  --border-radius-lg:16px;
+}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:13px;line-height:1.58;background:var(--color-background-primary);overflow-x:hidden}
+.ds-root{display:grid;grid-template-columns:188px minmax(0,1fr);height:auto;min-height:600px;overflow-x:hidden}
+.sidebar{width:188px;min-width:188px;border-right:0.5px solid var(--color-border-tertiary);padding:12px 0;position:sticky;top:0;align-self:flex-start;max-height:90vh;overflow-y:auto;overflow-x:hidden}
+.sidebar-logo{padding:10px 14px 16px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:8px}
+.sidebar-logo .logo-mark{display:flex;align-items:center;gap:10px}
+.logo-icon{width:58px;height:48px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:500;border:0.5px solid var(--color-border-tertiary);overflow:hidden;flex-shrink:0}
+.logo-img{width:190%;height:190%;object-fit:contain;display:block;transform:translateY(-2px)}
+.logo-name{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--color-purple-dark);line-height:1}
+.logo-sub{font-size:11px;color:var(--color-text-secondary)}
+.sb-section{font-size:10px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:.08em;text-transform:uppercase;padding:8px 16px 4px}
+.sb-item{display:flex;align-items:center;gap:8px;padding:5px 14px;font-size:12px;cursor:pointer;border-radius:0;color:var(--color-text-secondary);transition:background .12s;white-space:normal}
+.sb-item:hover{background:var(--color-background-secondary)}
+.sb-item.active{background:var(--color-background-secondary);color:var(--color-text-primary);font-weight:500}
+.sb-item i{font-size:14px;opacity:.6}
+.content{padding:26px 26px;overflow-y:auto;overflow-x:hidden;min-width:0}
+.page{display:none}
+.page.active{display:block}
+.page-header{margin-bottom:24px;padding-bottom:16px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.page-title{font-size:20px;font-weight:500;margin-bottom:4px}
+.page-desc{font-size:13px;color:var(--color-text-secondary)}
+.page-meta{display:flex;gap:12px;margin-top:8px}
+.meta-chip{font-size:11px;padding:3px 8px;border-radius:4px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.section-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin:24px 0 12px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(176px,1fr));gap:12px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:15px;min-width:0}
+.card-sm{padding:12px}
+.card-title{font-size:13px;font-weight:500;margin-bottom:8px}
+.card-sub{font-size:12px;color:var(--color-text-secondary)}
+.swatch-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.swatch{width:32px;height:32px;border-radius:6px;position:relative;cursor:default}
+.swatch:first-child{border-radius:8px 2px 2px 8px}
+.swatch:last-child{border-radius:2px 8px 8px 2px}
+.color-block{height:56px;border-radius:6px;margin-bottom:8px;border:0.5px solid var(--color-border-tertiary)}
+.token-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.token-row:last-child{border-bottom:none}
+.token-name{font-size:12px;font-family:var(--font-mono);color:var(--color-text-secondary)}
+.token-val{font-size:12px;font-family:var(--font-mono);color:var(--color-text-primary)}
+.token-dot{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+.type-sample{margin-bottom:12px;padding:12px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)}
+.rule-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;margin:2px}
+.tag-a11y{background:#F5EFF9;color:#4A2878}
+.tag-resp{background:#E6F1FB;color:#0C447C}
+.tag-state{background:#FAEEDA;color:#633806}
+.variant-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.spec-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:6px;font-size:13px;font-weight:600;border:1.5px solid transparent;cursor:default;white-space:nowrap}
+.btn-primary{background:#6B3FA0;color:#fff;border-color:#6B3FA0}
+.btn-secondary{background:transparent;color:#6B3FA0;border-color:#6B3FA0}
+.btn-confirm{background:var(--color-teal);color:#fff;border-color:var(--color-teal)}
+.btn-nude{background:var(--color-nude-50);color:#8E4A2D;border-color:var(--color-nude)}
+.btn-soft-danger{background:#FBE8E6;color:#C7372F;border-color:#F4D8D4}
+.btn-danger{background:#E24B4A;color:#fff;border-color:#E24B4A}
+.btn-ghost{background:transparent;color:var(--color-text-primary);border-color:var(--color-border-secondary)}
+.btn-sm{padding:5px 12px;font-size:12px}
+.btn-lg{padding:12px 24px;font-size:15px}
+.btn-icon{padding:8px;border-radius:6px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);display:inline-flex}
+.spec-input{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.input-label{font-size:12px;font-weight:500;color:var(--color-text-secondary)}
+.input-field{padding:8px 12px;border-radius:6px;border:1px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;color:var(--color-text-primary);outline:none}
+.input-field.focus{border-color:#6B3FA0;box-shadow:0 0 0 3px rgba(107,63,160,.16)}
+.input-field.error{border-color:#E24B4A;box-shadow:0 0 0 3px rgba(226,75,74,.12)}
+.input-helper{font-size:11px;color:var(--color-text-tertiary)}
+.input-error{font-size:11px;color:#E24B4A}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.badge-green{background:#EAF3DE;color:#27500A}
+.badge-red{background:#FCEBEB;color:#791F1F}
+.badge-amber{background:#FAEEDA;color:#633806}
+.badge-blue{background:#E6F1FB;color:#0C447C}
+.badge-gray{background:#F1EFE8;color:#444441}
+.badge-teal{background:var(--color-teal-50);color:var(--color-teal-dark)}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-green{background:#3B6D11}
+.dot-red{background:#A32D2D}
+.dot-amber{background:#854F0B}
+.dot-blue{background:#185FA5}
+.kpi-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px 20px}
+.kpi-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary);margin-bottom:4px}
+.kpi-value{font-size:26px;font-weight:500;line-height:1.2;margin-bottom:4px}
+.kpi-delta{font-size:12px;display:flex;align-items:center;gap:4px}
+.kpi-delta.pos{color:#3B6D11}
+.kpi-delta.neg{color:#A32D2D}
+.kpi-accent{width:3px;border-radius:2px;align-self:stretch;min-height:48px;margin-right:4px}
+.table-wrap{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.spec-table{width:100%;border-collapse:collapse;font-size:12px}
+.spec-table th{background:var(--color-background-secondary);padding:8px 12px;text-align:left;font-weight:500;font-size:11px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;border-bottom:0.5px solid var(--color-border-tertiary)}
+.spec-table td{padding:10px 12px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:middle}
+.spec-table tr:last-child td{border-bottom:none}
+.spec-table tr:hover td{background:var(--color-background-secondary)}
+.avatar{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;background:#F5EFF9;color:#4A2878;flex-shrink:0}
+.dialog-mock{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:0;overflow:hidden;max-width:380px}
+.dialog-header{padding:16px 20px 12px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:flex-start;justify-content:space-between}
+.dialog-title{font-size:15px;font-weight:500}
+.dialog-sub{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.dialog-body{padding:16px 20px}
+.dialog-footer{padding:12px 20px;border-top:0.5px solid var(--color-border-tertiary);display:flex;justify-content:flex-end;gap:8px;background:var(--color-background-secondary)}
+.nav-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer}
+.nav-chip.active-nav{background:#F5EFF9;color:#4A2878;font-weight:500}
+.prop-table{width:100%;font-size:12px;border-collapse:collapse}
+.prop-table td{padding:6px 0;vertical-align:top}
+.prop-table td:first-child{color:var(--color-text-secondary);width:110px;flex-shrink:0}
+.prop-table td:last-child{font-family:var(--font-mono);font-size:11px}
+.spacing-row{display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.spacing-bar{background:#9B6FCA;border-radius:2px;height:12px;flex-shrink:0}
+.radius-demo{border:1.5px solid #6B3FA0;height:40px;margin-bottom:8px;background:var(--color-background-secondary)}
+.elev-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 16px;font-size:12px}
+.template-frame{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;font-size:11px;max-width:100%}
+.tmpl-topbar{background:var(--color-background-secondary);padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between}
+.tmpl-sidebar{width:140px;border-right:0.5px solid var(--color-border-tertiary);padding:8px 0;background:var(--color-background-primary)}
+.tmpl-body{display:flex;min-height:280px}
+.tmpl-main{flex:1;padding:16px;background:var(--color-background-secondary)}
+.tmpl-nav-item{padding:6px 12px;font-size:11px;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px}
+.tmpl-nav-item.act{background:#F5EFF9;color:#4A2878;font-weight:500}
+.mini-kpi{border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:8px 10px;background:var(--color-background-primary)}
+.mini-kpi-val{font-size:16px;font-weight:500}
+.mini-kpi-lbl{font-size:10px;color:var(--color-text-secondary)}
+.appt-slot{border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:6px 10px;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;background:var(--color-background-primary)}
+.appt-time{font-size:10px;color:var(--color-text-secondary);width:44px;flex-shrink:0}
+.appt-info{flex:1;margin-left:8px}
+.appt-name{font-size:11px;font-weight:500}
+.appt-type{font-size:10px;color:var(--color-text-secondary)}
+.form-section{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:12px}
+.form-sec-header{background:var(--color-background-secondary);padding:8px 14px;font-size:12px;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)}
+.form-sec-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+.inline-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dd-list{border:0.5px solid var(--color-border-tertiary);border-radius:6px;overflow:hidden;margin-top:4px}
+.dd-item{padding:7px 12px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between}
+.dd-item:hover{background:var(--color-background-secondary)}
+.dd-item.dd-active{background:#F5EFF9;color:#4A2878}
+.dd-divider{height:0.5px;background:var(--color-border-tertiary)}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.chip{padding:3px 10px;border-radius:20px;font-size:11px;border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary)}
+.chip.chip-active{border-color:#6B3FA0;background:#F5EFF9;color:#4A2878}
+.rule-block{background:var(--color-background-secondary);border-left:3px solid #6B3FA0;padding:8px 12px;border-radius:0 4px 4px 0;margin:6px 0;font-size:12px}
+.rule-block.warn{border-color:#EF9F27}
+.rule-block.info{border-color:#378ADD}
+</style>
+
+<div class="ds-root">
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">
+      <div class="logo-icon"><img class="logo-img" src="../leey-lany-logo.png" alt="Leey Lany" /></div>
+      <div>
+        <div class="logo-name">Leey Lany</div>
+        <div class="logo-sub">Bariatra Design System</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-section">01 Foundations</div>
+  <div class="sb-item active" onclick="nav('colors')"><i class="ti ti-palette"></i>Colors</div>
+  <div class="sb-item" onclick="nav('typography')"><i class="ti ti-typography"></i>Typography</div>
+  <div class="sb-item" onclick="nav('grid')"><i class="ti ti-layout-grid"></i>Grid & Spacing</div>
+  <div class="sb-item" onclick="nav('elevation')"><i class="ti ti-layers-subtract"></i>Elevation & Radius</div>
+
+  <div class="sb-section">02 Tokens</div>
+  <div class="sb-item" onclick="nav('primitive')"><i class="ti ti-hexagon"></i>Primitive</div>
+  <div class="sb-item" onclick="nav('semantic')"><i class="ti ti-tag"></i>Semantic</div>
+
+  <div class="sb-section">03 Atoms</div>
+  <div class="sb-item" onclick="nav('buttons')"><i class="ti ti-square-rounded"></i>Buttons</div>
+  <div class="sb-item" onclick="nav('inputs')"><i class="ti ti-forms"></i>Inputs</div>
+  <div class="sb-item" onclick="nav('badges')"><i class="ti ti-badge"></i>Labels & Badges</div>
+  <div class="sb-item" onclick="nav('icons')"><i class="ti ti-icons"></i>Icons</div>
+
+  <div class="sb-section">04 Components</div>
+  <div class="sb-item" onclick="nav('kpi')"><i class="ti ti-chart-bar"></i>KPI Cards</div>
+  <div class="sb-item" onclick="nav('tables')"><i class="ti ti-table"></i>Tables</div>
+  <div class="sb-item" onclick="nav('dialogs')"><i class="ti ti-message-2"></i>Dialogs</div>
+  <div class="sb-item" onclick="nav('forms')"><i class="ti ti-file-text"></i>Forms</div>
+  <div class="sb-item" onclick="nav('dropdowns')"><i class="ti ti-chevron-down"></i>Dropdowns</div>
+
+  <div class="sb-section">05 Patterns</div>
+  <div class="sb-item" onclick="nav('appointments')"><i class="ti ti-calendar-event"></i>Appointments</div>
+  <div class="sb-item" onclick="nav('patients')"><i class="ti ti-users"></i>Patient Mgmt</div>
+
+  <div class="sb-section">06 Templates</div>
+  <div class="sb-item" onclick="nav('tpl-login')"><i class="ti ti-login"></i>Login</div>
+  <div class="sb-item" onclick="nav('tpl-dashboard')"><i class="ti ti-dashboard"></i>Dashboard</div>
+  <div class="sb-item" onclick="nav('tpl-patients')"><i class="ti ti-user-circle"></i>Patients</div>
+  <div class="sb-item" onclick="nav('tpl-appointments')"><i class="ti ti-calendar-check"></i>Appointments</div>
+</nav>
+
+<main class="content">
+
+<!-- COLORS -->
+<div id="colors" class="page active">
+  <div class="page-header">
+    <div class="page-title">🎨 Color System</div>
+    <div class="page-desc">A clinical, accessible color palette anchored in Purple as the primary brand hue. Optimized for WCAG 2.1 AA compliance across all backgrounds.</div>
+    <div class="page-meta">
+      <span class="meta-chip">WCAG 2.1 AA</span><span class="meta-chip">Light + Dark</span><span class="meta-chip">11 ramps × 9 stops</span>
+    </div>
+  </div>
+
+  <div class="section-label">Brand — Primary</div>
+  <div class="grid-3">
+    <div class="card card-sm">
+      <div class="color-block" style="background:#6B3FA0"></div>
+      <div class="card-title">Purple — Primary</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary)">#6B3FA0 · hsl(161,68%,37%)</div>
+      <div style="margin-top:6px" class="rule-block">Buttons, links, focus rings. 4.7:1 on white.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="color-block" style="background:#4A2878"></div>
+      <div class="card-title">Purple Dark — Primary Dark</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary)">#4A2878 · Pressed states</div>
+      <div style="margin-top:6px" class="rule-block">Hover/active on primary buttons. 7.1:1 on white.</div>
+    </div>
+    <div class="card card-sm">
+      <div class="color-block" style="background:#F5EFF9"></div>
+      <div class="card-title">Purple 50 — Primary Subtle</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary)">#F5EFF9 · Tinted backgrounds</div>
+      <div style="margin-top:6px" class="rule-block">Selected states, nav highlights, badge fills.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Semantic — Status Ramps</div>
+  <div class="grid-4">
+    <div class="card card-sm">
+      <div class="swatch-row">
+        <div class="swatch" style="background:#EAF3DE" title="Green 50"></div>
+        <div class="swatch" style="background:#C0DD97"></div>
+        <div class="swatch" style="background:#97C459"></div>
+        <div class="swatch" style="background:#639922"></div>
+        <div class="swatch" style="background:#3B6D11"></div>
+        <div class="swatch" style="background:#27500A"></div>
+        <div class="swatch" style="background:#173404"></div>
+      </div>
+      <div class="card-title">Success — Green</div>
+      <div class="card-sub">Active patients, confirmed appts, completed tasks</div>
+    </div>
+    <div class="card card-sm">
+      <div class="swatch-row">
+        <div class="swatch" style="background:#FCEBEB"></div>
+        <div class="swatch" style="background:#F7C1C1"></div>
+        <div class="swatch" style="background:#F09595"></div>
+        <div class="swatch" style="background:#E24B4A"></div>
+        <div class="swatch" style="background:#A32D2D"></div>
+        <div class="swatch" style="background:#791F1F"></div>
+        <div class="swatch" style="background:#501313"></div>
+      </div>
+      <div class="card-title">Danger — Red</div>
+      <div class="card-sub">Critical alerts, cancellations, destructive actions</div>
+    </div>
+    <div class="card card-sm">
+      <div class="swatch-row">
+        <div class="swatch" style="background:#FAEEDA"></div>
+        <div class="swatch" style="background:#FAC775"></div>
+        <div class="swatch" style="background:#EF9F27"></div>
+        <div class="swatch" style="background:#BA7517"></div>
+        <div class="swatch" style="background:#854F0B"></div>
+        <div class="swatch" style="background:#633806"></div>
+        <div class="swatch" style="background:#412402"></div>
+      </div>
+      <div class="card-title">Warning — Amber</div>
+      <div class="card-sub">Pending items, overdue tasks, attention needed</div>
+    </div>
+    <div class="card card-sm">
+      <div class="swatch-row">
+        <div class="swatch" style="background:#E6F1FB"></div>
+        <div class="swatch" style="background:#B5D4F4"></div>
+        <div class="swatch" style="background:#85B7EB"></div>
+        <div class="swatch" style="background:#378ADD"></div>
+        <div class="swatch" style="background:#185FA5"></div>
+        <div class="swatch" style="background:#0C447C"></div>
+        <div class="swatch" style="background:#042C53"></div>
+      </div>
+      <div class="card-title">Info — Blue</div>
+      <div class="card-sub">Informational notices, scheduled items, notes</div>
+    </div>
+  </div>
+
+  <div class="section-label">Neutral — Grays</div>
+  <div class="card card-sm">
+    <div class="swatch-row" style="gap:6px">
+      <div style="text-align:center"><div class="swatch" style="background:#F1EFE8;width:48px;height:48px;border-radius:6px;border:0.5px solid var(--color-border-tertiary)"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 50<br>#F1EFE8</div></div>
+      <div style="text-align:center"><div class="swatch" style="background:#D3D1C7;width:48px;height:48px;border-radius:6px"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 100<br>#D3D1C7</div></div>
+      <div style="text-align:center"><div class="swatch" style="background:#B4B2A9;width:48px;height:48px;border-radius:6px"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 200<br>#B4B2A9</div></div>
+      <div style="text-align:center"><div class="swatch" style="background:#888780;width:48px;height:48px;border-radius:6px"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 400<br>#888780</div></div>
+      <div style="text-align:center"><div class="swatch" style="background:#5F5E5A;width:48px;height:48px;border-radius:6px"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 600<br>#5F5E5A</div></div>
+      <div style="text-align:center"><div class="swatch" style="background:#444441;width:48px;height:48px;border-radius:6px"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 800<br>#444441</div></div>
+      <div style="text-align:center"><div class="swatch" style="background:#2C2C2A;width:48px;height:48px;border-radius:6px"></div><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">Gray 900<br>#2C2C2A</div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Accessibility Checks</div>
+  <div class="grid-2">
+    <div class="rule-block">✅ Purple on White — 4.7:1 (AA pass, text & UI)</div>
+    <div class="rule-block">✅ Gray 800 on Gray 50 — 7.4:1 (AAA pass)</div>
+    <div class="rule-block warn">⚠️ Purple 50 on White — decorative use only, never text</div>
+    <div class="rule-block info">ℹ️ All interactive elements: min 3:1 on adjacent bg</div>
+  </div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div id="typography" class="page">
+  <div class="page-header">
+    <div class="page-title">🔤 Typography</div>
+    <div class="page-desc">A structured 6-level scale. Primary: Montserrat (UI & data). Display: Cormorant Garamond (headings & emphasis). Mono: Space Mono (codes, IDs, lab values).</div>
+    <div class="page-meta"><span class="meta-chip">Montserrat</span><span class="meta-chip">Cormorant Garamond</span><span class="meta-chip">Space Mono</span><span class="meta-chip">rem-based scale</span></div>
+  </div>
+
+  <div class="section-label">Type Scale</div>
+  <div class="card">
+    <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:32px;font-weight:500">Display / 32px / 500</div>
+      <div class="card-sub" style="font-size:11px">display · 2rem · leading-1.2 · tracking-tight</div>
+    </div>
+    <div style="margin-bottom:12px;padding-bottom:10px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:24px;font-weight:500">H1 · Page Titles · 24px</div>
+      <div class="card-sub" style="font-size:11px">h1 · 1.5rem · 500</div>
+    </div>
+    <div style="margin-bottom:10px;padding-bottom:8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:20px;font-weight:500">H2 · Section Titles · 20px</div>
+      <div class="card-sub" style="font-size:11px">h2 · 1.25rem · 500</div>
+    </div>
+    <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:16px;font-weight:500">H3 · Card & Component Titles · 16px</div>
+      <div class="card-sub" style="font-size:11px">h3 · 1rem · 500</div>
+    </div>
+    <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:14px">Body · Default paragraph text · 14px / Regular</div>
+      <div class="card-sub" style="font-size:11px">body · 0.875rem · 400 · leading-1.6</div>
+    </div>
+    <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:12px;color:var(--color-text-secondary)">Caption · Metadata, timestamps, helper text · 12px</div>
+      <div class="card-sub" style="font-size:11px">caption · 0.75rem · 400</div>
+    </div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-tertiary)">OVERLINE · SECTION LABELS · 11px</div>
+      <div class="card-sub" style="font-size:11px">overline · 0.6875rem · 500 · tracking-wide</div>
+    </div>
+  </div>
+
+  <div class="section-label">Medical Data Styles</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div class="card-sub" style="margin-bottom:8px">Lab values, patient IDs, dosages</div>
+      <div style="font-family:var(--font-mono);font-size:16px;font-weight:500">MRN-2024-00481</div>
+      <div style="font-family:var(--font-mono);font-size:14px;color:var(--color-text-secondary)">HbA1c: 6.4 mmol/L</div>
+      <div style="font-family:var(--font-mono);font-size:14px;color:#A32D2D">BP: 148/92 mmHg ↑</div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-sub" style="margin-bottom:8px">Responsive breakpoints</div>
+      <div class="token-row"><span class="token-name">xs (mobile)</span><span class="token-val">≤ 480px</span></div>
+      <div class="token-row"><span class="token-name">sm (tablet)</span><span class="token-val">481–768px</span></div>
+      <div class="token-row"><span class="token-name">md (laptop)</span><span class="token-val">769–1024px</span></div>
+      <div class="token-row"><span class="token-name">lg (desktop)</span><span class="token-val">1025–1280px</span></div>
+      <div class="token-row"><span class="token-name">xl (wide)</span><span class="token-val">≥ 1281px</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- GRID & SPACING -->
+<div id="grid" class="page">
+  <div class="page-header">
+    <div class="page-title">📐 Grid & Spacing</div>
+    <div class="page-desc">12-column grid at desktop. 4-column at tablet. Single column at mobile. 4px base unit — all spacing is a multiple of 4.</div>
+    <div class="page-meta"><span class="meta-chip">12-col desktop</span><span class="meta-chip">4px base unit</span><span class="meta-chip">24px gutter</span></div>
+  </div>
+
+  <div class="section-label">Spacing Scale</div>
+  <div class="card">
+    <div class="spacing-row"><div class="spacing-bar" style="width:4px"></div><div class="token-name" style="width:60px">space-1</div><div class="token-val">4px</div><div class="card-sub" style="margin-left:12px">Icon padding, micro-gaps</div></div>
+    <div class="spacing-row"><div class="spacing-bar" style="width:8px"></div><div class="token-name" style="width:60px">space-2</div><div class="token-val">8px</div><div class="card-sub" style="margin-left:12px">Inline element gaps, badge padding</div></div>
+    <div class="spacing-row"><div class="spacing-bar" style="width:12px"></div><div class="token-name" style="width:60px">space-3</div><div class="token-val">12px</div><div class="card-sub" style="margin-left:12px">Form field gaps, list items</div></div>
+    <div class="spacing-row"><div class="spacing-bar" style="width:16px"></div><div class="token-name" style="width:60px">space-4</div><div class="token-val">16px</div><div class="card-sub" style="margin-left:12px">Card padding, button padding</div></div>
+    <div class="spacing-row"><div class="spacing-bar" style="width:24px"></div><div class="token-name" style="width:60px">space-6</div><div class="token-val">24px</div><div class="card-sub" style="margin-left:12px">Section gaps, container padding</div></div>
+    <div class="spacing-row"><div class="spacing-bar" style="width:32px"></div><div class="token-name" style="width:60px">space-8</div><div class="token-val">32px</div><div class="card-sub" style="margin-left:12px">Page sections, modal body</div></div>
+    <div class="spacing-row"><div class="spacing-bar" style="width:48px"></div><div class="token-name" style="width:60px">space-12</div><div class="token-val">48px</div><div class="card-sub" style="margin-left:12px">Hero sections, dashboard margins</div></div>
+    <div class="spacing-row" style="border:none"><div class="spacing-bar" style="width:64px"></div><div class="token-name" style="width:60px">space-16</div><div class="token-val">64px</div><div class="card-sub" style="margin-left:12px">Page-level whitespace</div></div>
+  </div>
+
+  <div class="section-label">Grid Configs</div>
+  <div class="grid-3">
+    <div class="card card-sm">
+      <div class="card-title">Desktop (≥1025px)</div>
+      <div class="token-row"><span class="token-name">Columns</span><span class="token-val">12</span></div>
+      <div class="token-row"><span class="token-name">Gutter</span><span class="token-val">24px</span></div>
+      <div class="token-row"><span class="token-name">Margin</span><span class="token-val">48px</span></div>
+      <div class="token-row"><span class="token-name">Max width</span><span class="token-val">1440px</span></div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title">Tablet (769–1024px)</div>
+      <div class="token-row"><span class="token-name">Columns</span><span class="token-val">8</span></div>
+      <div class="token-row"><span class="token-name">Gutter</span><span class="token-val">16px</span></div>
+      <div class="token-row"><span class="token-name">Margin</span><span class="token-val">24px</span></div>
+      <div class="token-row"><span class="token-name">Max width</span><span class="token-val">fluid</span></div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title">Mobile (≤768px)</div>
+      <div class="token-row"><span class="token-name">Columns</span><span class="token-val">4</span></div>
+      <div class="token-row"><span class="token-name">Gutter</span><span class="token-val">12px</span></div>
+      <div class="token-row"><span class="token-name">Margin</span><span class="token-val">16px</span></div>
+      <div class="token-row"><span class="token-name">Max width</span><span class="token-val">fluid</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ELEVATION & RADIUS -->
+<div id="elevation" class="page">
+  <div class="page-header">
+    <div class="page-title">🪟 Elevation & Border Radius</div>
+    <div class="page-desc">Leey Lany uses border-based depth over shadow-based depth — cleaner in clinical environments. Shadows are reserved for modals and floating panels only.</div>
+  </div>
+
+  <div class="section-label">Border Radius Scale</div>
+  <div class="grid-4">
+    <div class="card card-sm" style="text-align:center">
+      <div class="radius-demo" style="border-radius:2px"></div>
+      <div class="card-title">radius-xs</div><div class="card-sub">2px · Chips, inline badges</div>
+    </div>
+    <div class="card card-sm" style="text-align:center">
+      <div class="radius-demo" style="border-radius:4px"></div>
+      <div class="card-title">radius-sm</div><div class="card-sub">4px · Inputs, buttons</div>
+    </div>
+    <div class="card card-sm" style="text-align:center">
+      <div class="radius-demo" style="border-radius:8px"></div>
+      <div class="card-title">radius-md</div><div class="card-sub">8px · Cards, dropdowns</div>
+    </div>
+    <div class="card card-sm" style="text-align:center">
+      <div class="radius-demo" style="border-radius:12px"></div>
+      <div class="card-title">radius-lg</div><div class="card-sub">12px · Modals, panels</div>
+    </div>
+  </div>
+
+  <div class="section-label">Elevation Levels</div>
+  <div class="grid-3">
+    <div style="padding:12px;border-radius:8px;border:0.5px solid var(--color-border-tertiary)">
+      <div class="card-title">Level 0 — Flat</div>
+      <div class="card-sub" style="margin-bottom:8px">No elevation. Table rows, input fields.</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary)">border: 0.5px solid<br>box-shadow: none</div>
+    </div>
+    <div style="padding:12px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary)">
+      <div class="card-title">Level 1 — Raised</div>
+      <div class="card-sub" style="margin-bottom:8px">Default cards, KPI tiles, list items.</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary)">border: 0.5px solid -secondary<br>bg: background-primary</div>
+    </div>
+    <div style="padding:12px;border-radius:8px;border:1px solid var(--color-border-primary);background:var(--color-background-primary);box-shadow:0 4px 16px rgba(0,0,0,.07)">
+      <div class="card-title">Level 2 — Floating</div>
+      <div class="card-sub" style="margin-bottom:8px">Modals, dialogs, popovers, tooltips.</div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary)">border: 1px solid -primary<br>shadow: 0 4px 16px rgba(0,0,0,.07)</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIMITIVE TOKENS -->
+<div id="primitive" class="page">
+  <div class="page-header">
+    <div class="page-title">⬡ Primitive Tokens</div>
+    <div class="page-desc">Raw design values — not to be used directly in components. These are the single source of truth that semantic tokens reference.</div>
+    <div class="page-meta"><span class="meta-chip">medicore.tokens.json</span><span class="meta-chip">Style Dictionary compatible</span></div>
+  </div>
+
+  <div class="section-label">Color Primitives</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div class="card-title" style="margin-bottom:10px">Teal</div>
+      <div class="token-row"><div class="token-dot" style="background:#F5EFF9;border:0.5px solid var(--color-border-tertiary)"></div><span class="token-name">purple.50</span><span class="token-val">#F5EFF9</span></div>
+      <div class="token-row"><div class="token-dot" style="background:#9B6FCA"></div><span class="token-name">teal.200</span><span class="token-val">#9B6FCA</span></div>
+      <div class="token-row"><div class="token-dot" style="background:#6B3FA0"></div><span class="token-name">purple.600</span><span class="token-val">#6B3FA0</span></div>
+      <div class="token-row"><div class="token-dot" style="background:#4A2878"></div><span class="token-name">purple.800</span><span class="token-val">#4A2878</span></div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title" style="margin-bottom:10px">Spacing Primitives</div>
+      <div class="token-row"><span class="token-name">size.0</span><span class="token-val">0px</span></div>
+      <div class="token-row"><span class="token-name">size.1</span><span class="token-val">4px</span></div>
+      <div class="token-row"><span class="token-name">size.2</span><span class="token-val">8px</span></div>
+      <div class="token-row"><span class="token-name">size.4</span><span class="token-val">16px</span></div>
+      <div class="token-row"><span class="token-name">size.6</span><span class="token-val">24px</span></div>
+      <div class="token-row"><span class="token-name">size.12</span><span class="token-val">48px</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Typography Primitives</div>
+  <div class="card card-sm">
+    <div class="token-row"><span class="token-name">font.family.sans</span><span class="token-val">'Montserrat', system-ui</span></div>
+    <div class="token-row"><span class="token-name">font.family.display</span><span class="token-val">'Cormorant Garamond', serif</span></div>
+    <div class="token-row"><span class="token-name">font.family.mono</span><span class="token-val">'Space Mono', monospace</span></div>
+    <div class="token-row"><span class="token-name">font.size.xs</span><span class="token-val">0.6875rem (11px)</span></div>
+    <div class="token-row"><span class="token-name">font.size.sm</span><span class="token-val">0.75rem (12px)</span></div>
+    <div class="token-row"><span class="token-name">font.size.md</span><span class="token-val">0.875rem (14px)</span></div>
+    <div class="token-row"><span class="token-name">font.size.lg</span><span class="token-val">1rem (16px)</span></div>
+    <div class="token-row"><span class="token-name">font.size.xl</span><span class="token-val">1.25rem (20px)</span></div>
+    <div class="token-row"><span class="token-name">font.weight.regular</span><span class="token-val">400</span></div>
+    <div class="token-row"><span class="token-name">font.weight.medium</span><span class="token-val">500</span></div>
+  </div>
+</div>
+
+<!-- SEMANTIC TOKENS -->
+<div id="semantic" class="page">
+  <div class="page-header">
+    <div class="page-title">🏷 Semantic Tokens</div>
+    <div class="page-desc">Intent-based tokens that map to primitives. Change a theme by swapping values here — no component changes needed. All semantic tokens support light and dark mode.</div>
+  </div>
+
+  <div class="section-label">Color — Interactive</div>
+  <div class="card card-sm" style="margin-bottom:12px">
+    <div class="token-row"><div class="token-dot" style="background:#6B3FA0"></div><span class="token-name">color.action.primary</span><span class="token-val">→ purple.600</span></div>
+    <div class="token-row"><div class="token-dot" style="background:#4A2878"></div><span class="token-name">color.action.primary-hover</span><span class="token-val">→ purple.800</span></div>
+    <div class="token-row"><div class="token-dot" style="background:#F5EFF9;border:0.5px solid #9B6FCA"></div><span class="token-name">color.action.primary-subtle</span><span class="token-val">→ purple.50</span></div>
+    <div class="token-row"><div class="token-dot" style="background:#E24B4A"></div><span class="token-name">color.action.danger</span><span class="token-val">→ red.600</span></div>
+    <div class="token-row"><div class="token-dot" style="background:#EF9F27"></div><span class="token-name">color.action.warning</span><span class="token-val">→ amber.400</span></div>
+  </div>
+
+  <div class="section-label">Color — Feedback States</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div class="token-row"><span class="token-name">color.feedback.success-bg</span><span class="token-val">→ green.50</span></div>
+      <div class="token-row"><span class="token-name">color.feedback.success-text</span><span class="token-val">→ green.800</span></div>
+      <div class="token-row"><span class="token-name">color.feedback.success-border</span><span class="token-val">→ green.200</span></div>
+    </div>
+    <div class="card card-sm">
+      <div class="token-row"><span class="token-name">color.feedback.danger-bg</span><span class="token-val">→ red.50</span></div>
+      <div class="token-row"><span class="token-name">color.feedback.danger-text</span><span class="token-val">→ red.800</span></div>
+      <div class="token-row"><span class="token-name">color.feedback.danger-border</span><span class="token-val">→ red.200</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Typography — Semantic</div>
+  <div class="card card-sm">
+    <div class="token-row"><span class="token-name">text.heading</span><span class="token-val">→ Montserrat, 500, gray.900</span></div>
+    <div class="token-row"><span class="token-name">text.body</span><span class="token-val">→ Montserrat, 400, gray.800</span></div>
+    <div class="token-row"><span class="token-name">text.caption</span><span class="token-val">→ Montserrat, 400, gray.600</span></div>
+    <div class="token-row"><span class="token-name">text.label</span><span class="token-val">→ Montserrat, 500, gray.700</span></div>
+    <div class="token-row"><span class="token-name">text.data</span><span class="token-val">→ Space Mono, 400, gray.900</span></div>
+    <div class="token-row"><span class="token-name">text.link</span><span class="token-val">→ Montserrat, 400, purple.600, underline</span></div>
+  </div>
+</div>
+
+<!-- BUTTONS -->
+<div id="buttons" class="page">
+  <div class="page-header">
+    <div class="page-title">🔲 Buttons</div>
+    <div class="page-desc">Sistema de acciones para agenda, seguimiento y confirmación de citas. Morado para acción principal, teal para confirmación y nude para acciones secundarias cálidas.</div>
+    <div class="page-meta"><span class="meta-chip">Montserrat UI</span><span class="meta-chip">Min touch 44px</span><span class="meta-chip">WCAG 2.1 AA</span></div>
+  </div>
+
+  <div class="section-label">Tamaño grande (LG)</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="variant-row">
+      <span class="spec-btn btn-primary btn-lg">Agendar cita</span>
+      <span class="spec-btn btn-secondary btn-lg">Ver detalles</span>
+      <span class="spec-btn btn-confirm btn-lg">Confirmar</span>
+      <span class="spec-btn btn-nude btn-lg">Reagendar</span>
+      <span class="spec-btn btn-soft-danger btn-lg">Cancelar</span>
+    </div>
+  </div>
+
+  <div class="section-label">Tamaño medio (MD)</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="variant-row">
+      <span class="spec-btn btn-primary">Nueva cita</span>
+      <span class="spec-btn btn-secondary">Outline</span>
+      <span class="spec-btn btn-ghost">Ghost</span>
+      <span class="spec-btn btn-confirm">Teal</span>
+    </div>
+  </div>
+
+  <div class="section-label">Estados & variantes</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="variant-row">
+      <span class="spec-btn btn-primary" style="opacity:.45;cursor:not-allowed">Desactivado</span>
+      <span class="spec-btn btn-primary" style="border-radius:100px">Pill primary</span>
+      <span class="spec-btn btn-secondary" style="border-radius:100px">Pill outline</span>
+      <span class="spec-btn btn-primary" style="border-radius:100px"><i class="ti ti-loader-2" style="font-size:14px" aria-hidden="true"></i> Guardando...</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-sub" style="margin-bottom:10px">Ghost · Low-emphasis, contextual actions in tables, toolbars</div>
+    <div class="variant-row">
+      <span class="spec-btn btn-ghost btn-sm"><i class="ti ti-edit" style="font-size:14px" aria-hidden="true"></i> Edit</span>
+      <span class="spec-btn btn-ghost"><i class="ti ti-download" style="font-size:14px" aria-hidden="true"></i> Export</span>
+      <span class="spec-btn btn-ghost"><i class="ti ti-eye" style="font-size:14px" aria-hidden="true"></i> View</span>
+    </div>
+  </div>
+
+  <div class="section-label">Properties & Accessibility</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div class="card-title">Component Properties</div>
+      <table class="prop-table" style="margin-top:8px">
+        <tr><td>variant</td><td>primary | secondary | confirm | nude | soft-danger | ghost</td></tr>
+        <tr><td>size</td><td>sm | md (default) | lg</td></tr>
+        <tr><td>state</td><td>default | hover | active | focus | disabled | loading</td></tr>
+        <tr><td>icon</td><td>leading | trailing | icon-only</td></tr>
+        <tr><td>fullWidth</td><td>boolean</td></tr>
+      </table>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title">Accessibility Rules</div>
+      <div class="rule-tag tag-a11y"><i class="ti ti-accessible" aria-hidden="true"></i> role="button" or &lt;button&gt; element</div>
+      <div class="rule-tag tag-a11y"><i class="ti ti-accessible" aria-hidden="true"></i> aria-label on icon-only buttons</div>
+      <div class="rule-tag tag-a11y"><i class="ti ti-accessible" aria-hidden="true"></i> aria-disabled + tabIndex=-1 when disabled</div>
+      <div class="rule-tag tag-a11y"><i class="ti ti-accessible" aria-hidden="true"></i> Loading state: aria-busy="true"</div>
+      <div class="rule-tag tag-resp"><i class="ti ti-device-mobile" aria-hidden="true"></i> min-height: 44px on mobile</div>
+      <div class="rule-tag tag-resp"><i class="ti ti-device-mobile" aria-hidden="true"></i> Full-width below 480px unless icon-only</div>
+    </div>
+  </div>
+</div>
+
+<!-- INPUTS -->
+<div id="inputs" class="page">
+  <div class="page-header">
+    <div class="page-title">✏️ Inputs</div>
+    <div class="page-desc">Text inputs, selects, textareas, date pickers, and search. All inputs are 40px tall (default), with floating labels and inline validation.</div>
+  </div>
+
+  <div class="section-label">Variants & States</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="spec-input">
+        <div class="input-label">Patient Name</div>
+        <div class="input-field">Default state</div>
+        <div class="input-helper">Enter full legal name as on insurance card</div>
+      </div>
+      <div class="spec-input">
+        <div class="input-label">Date of Birth</div>
+        <div class="input-field focus">Focus state — 2024-01-15</div>
+        <div class="input-helper">Format: YYYY-MM-DD</div>
+      </div>
+      <div class="spec-input">
+        <div class="input-label" style="color:#E24B4A">Email Address *</div>
+        <div class="input-field error">invalid@</div>
+        <div class="input-error"><i class="ti ti-alert-circle" style="font-size:12px" aria-hidden="true"></i> Enter a valid email address</div>
+      </div>
+      <div class="spec-input">
+        <div class="input-label" style="color:var(--color-text-tertiary)">Disabled Field</div>
+        <div class="input-field" style="opacity:.5;cursor:not-allowed;background:var(--color-background-secondary)">Cannot be edited</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="spec-input">
+        <div class="input-label">Search Patients</div>
+        <div class="input-field" style="display:flex;align-items:center;gap:8px;padding-left:10px"><i class="ti ti-search" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i><span style="color:var(--color-text-tertiary)">Search by name, MRN, DOB...</span></div>
+      </div>
+      <div class="spec-input">
+        <div class="input-label">Notes / Chief Complaint</div>
+        <div class="input-field" style="min-height:72px;padding-top:8px">Patient reports chest pain, started 3 days ago...</div>
+        <div class="input-helper">Max 500 characters</div>
+      </div>
+      <div class="spec-input">
+        <div class="input-label">Appointment Type</div>
+        <div class="input-field" style="display:flex;align-items:center;justify-content:space-between">
+          <span>Consultation — New Patient</span>
+          <i class="ti ti-chevron-down" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Accessibility & Responsive</div>
+  <div class="grid-2">
+    <div class="rule-block tag-a11y">Every input has a visible &lt;label&gt; — no placeholder-only labeling</div>
+    <div class="rule-block tag-a11y">Error messages linked via aria-describedby</div>
+    <div class="rule-block tag-resp">Inputs go full-width at mobile (≤480px)</div>
+    <div class="rule-block info">Required fields marked with asterisk + aria-required="true"</div>
+  </div>
+</div>
+
+<!-- BADGES -->
+<div id="badges" class="page">
+  <div class="page-header">
+    <div class="page-title">🏷 Labels & Status Badges</div>
+    <div class="page-desc">Status badges communicate patient status, appointment state, alert severity. Labels annotate form fields. All badges have min-width and always include an icon or dot for color-blindness.</div>
+  </div>
+
+  <div class="section-label">Status Badges — Appointments</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="variant-row">
+      <span class="badge badge-green"><span class="dot dot-green"></span>Confirmed</span>
+      <span class="badge badge-amber"><span class="dot dot-amber"></span>Pending</span>
+      <span class="badge badge-red"><span class="dot dot-red"></span>Cancelled</span>
+      <span class="badge badge-blue"><span class="dot dot-blue"></span>Scheduled</span>
+      <span class="badge badge-gray"><span class="dot" style="background:#5F5E5A"></span>No-Show</span>
+      <span class="badge badge-teal"><span class="dot" style="background:#4A2878"></span>Checked In</span>
+    </div>
+  </div>
+
+  <div class="section-label">Status Badges — Patients</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="variant-row">
+      <span class="badge badge-green"><i class="ti ti-user-check" style="font-size:12px" aria-hidden="true"></i>Active</span>
+      <span class="badge badge-gray"><i class="ti ti-user-off" style="font-size:12px" aria-hidden="true"></i>Inactive</span>
+      <span class="badge badge-red"><i class="ti ti-alert-triangle" style="font-size:12px" aria-hidden="true"></i>Critical</span>
+      <span class="badge badge-amber"><i class="ti ti-clock" style="font-size:12px" aria-hidden="true"></i>Awaiting Review</span>
+      <span class="badge badge-blue"><i class="ti ti-file-medical" style="font-size:12px" aria-hidden="true"></i>New Patient</span>
+    </div>
+  </div>
+
+  <div class="section-label">Alert Severity Labels</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;background:#FCEBEB;border:0.5px solid #F09595;margin-bottom:8px">
+        <i class="ti ti-alert-circle" style="color:#A32D2D;font-size:16px" aria-hidden="true"></i>
+        <div><div style="font-size:12px;font-weight:500;color:#791F1F">Critical — Allergy Alert</div><div style="font-size:11px;color:#A32D2D">Penicillin — Severe reaction on record</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;background:#FAEEDA;border:0.5px solid #FAC775">
+        <i class="ti ti-alert-triangle" style="color:#854F0B;font-size:16px" aria-hidden="true"></i>
+        <div><div style="font-size:12px;font-weight:500;color:#633806">Warning — Lab Value</div><div style="font-size:11px;color:#854F0B">HbA1c elevated — follow-up required</div></div>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title">Badge Properties</div>
+      <table class="prop-table" style="margin-top:8px">
+        <tr><td>variant</td><td>green | red | amber | blue | gray | teal</td></tr>
+        <tr><td>size</td><td>sm | md (default)</td></tr>
+        <tr><td>icon</td><td>leading icon or dot (required)</td></tr>
+        <tr><td>interactive</td><td>boolean (adds dismiss ×)</td></tr>
+      </table>
+      <div class="rule-tag tag-a11y" style="margin-top:8px">aria-label must spell out full meaning</div>
+    </div>
+  </div>
+</div>
+
+<!-- ICONS -->
+<div id="icons" class="page">
+  <div class="page-header">
+    <div class="page-title">⚡ Icon System</div>
+    <div class="page-desc">Tabler Icons — outline style. 24×24px default, 20px in buttons, 16px inline. Icon-only actions always have aria-label. Never use icons as the sole conveyor of meaning.</div>
+  </div>
+
+  <div class="section-label">Medical Domain Icons</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;text-align:center">
+      <div><i class="ti ti-stethoscope" style="font-size:24px;color:#6B3FA0" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">stethoscope</div></div>
+      <div><i class="ti ti-heart-rate-monitor" style="font-size:24px;color:#6B3FA0" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">heart-rate-monitor</div></div>
+      <div><i class="ti ti-pill" style="font-size:24px;color:#6B3FA0" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">pill</div></div>
+      <div><i class="ti ti-vaccine" style="font-size:24px;color:#6B3FA0" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">vaccine</div></div>
+      <div><i class="ti ti-report-medical" style="font-size:24px;color:#6B3FA0" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">report-medical</div></div>
+      <div><i class="ti ti-microscope" style="font-size:24px;color:#6B3FA0" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">microscope</div></div>
+      <div><i class="ti ti-user-circle" style="font-size:24px;color:var(--color-text-secondary)" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">user-circle</div></div>
+      <div><i class="ti ti-calendar-event" style="font-size:24px;color:var(--color-text-secondary)" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">calendar-event</div></div>
+      <div><i class="ti ti-clipboard-list" style="font-size:24px;color:var(--color-text-secondary)" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">clipboard-list</div></div>
+      <div><i class="ti ti-notes-medical" style="font-size:24px;color:var(--color-text-secondary)" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">notes-medical</div></div>
+      <div><i class="ti ti-alert-triangle" style="font-size:24px;color:#EF9F27" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">alert-triangle</div></div>
+      <div><i class="ti ti-bell" style="font-size:24px;color:var(--color-text-secondary)" aria-hidden="true"></i><div style="font-size:10px;margin-top:4px;color:var(--color-text-secondary)">bell</div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Icon Sizes & Rules</div>
+  <div class="grid-3">
+    <div class="card card-sm" style="text-align:center"><i class="ti ti-heart-rate-monitor" style="font-size:16px;color:var(--color-text-secondary)" aria-hidden="true"></i><div class="card-sub" style="margin-top:6px">16px · Inline, table cells</div></div>
+    <div class="card card-sm" style="text-align:center"><i class="ti ti-heart-rate-monitor" style="font-size:20px;color:var(--color-text-secondary)" aria-hidden="true"></i><div class="card-sub" style="margin-top:6px">20px · Buttons, nav items</div></div>
+    <div class="card card-sm" style="text-align:center"><i class="ti ti-heart-rate-monitor" style="font-size:24px;color:var(--color-text-secondary)" aria-hidden="true"></i><div class="card-sub" style="margin-top:6px">24px · Standalone, empty states</div></div>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div id="kpi" class="page">
+  <div class="page-header">
+    <div class="page-title">📊 KPI Cards</div>
+    <div class="page-desc">Surface-level metrics for the dashboard header. 3 variants: simple, with trend, with sparkline. Always pair a numeric value with a clear label and context delta.</div>
+    <div class="page-meta"><span class="meta-chip">4 per row — desktop</span><span class="meta-chip">2 per row — tablet</span><span class="meta-chip">1 per row — mobile</span></div>
+  </div>
+
+  <div class="section-label">Variant — Simple</div>
+  <div class="grid-4" style="margin-bottom:12px">
+    <div class="kpi-card" style="display:flex;gap:10px">
+      <div class="kpi-accent" style="background:#6B3FA0"></div>
+      <div><div class="kpi-label">Total Patients</div><div class="kpi-value">2,847</div><div class="kpi-delta pos"><i class="ti ti-arrow-up" style="font-size:12px" aria-hidden="true"></i>+124 this month</div></div>
+    </div>
+    <div class="kpi-card" style="display:flex;gap:10px">
+      <div class="kpi-accent" style="background:#378ADD"></div>
+      <div><div class="kpi-label">Today's Appointments</div><div class="kpi-value">34</div><div class="kpi-delta pos"><i class="ti ti-arrow-up" style="font-size:12px" aria-hidden="true"></i>8 remaining</div></div>
+    </div>
+    <div class="kpi-card" style="display:flex;gap:10px">
+      <div class="kpi-accent" style="background:#EF9F27"></div>
+      <div><div class="kpi-label">Pending Reviews</div><div class="kpi-value">12</div><div class="kpi-delta neg"><i class="ti ti-arrow-up" style="font-size:12px" aria-hidden="true"></i>+3 since yesterday</div></div>
+    </div>
+    <div class="kpi-card" style="display:flex;gap:10px">
+      <div class="kpi-accent" style="background:#E24B4A"></div>
+      <div><div class="kpi-label">Critical Alerts</div><div class="kpi-value">3</div><div class="kpi-delta neg"><i class="ti ti-alert-triangle" style="font-size:12px" aria-hidden="true"></i>Needs attention</div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Properties & Accessibility</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div class="card-title">Component Properties</div>
+      <table class="prop-table" style="margin-top:8px">
+        <tr><td>variant</td><td>simple | trend | sparkline | progress</td></tr>
+        <tr><td>accentColor</td><td>teal | blue | amber | red | green</td></tr>
+        <tr><td>delta</td><td>{ value, direction, label }</td></tr>
+        <tr><td>loading</td><td>boolean — shows skeleton</td></tr>
+        <tr><td>clickable</td><td>boolean — drills down</td></tr>
+        <tr><td>period</td><td>"today" | "week" | "month" | "quarter"</td></tr>
+      </table>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title">Accessibility Rules</div>
+      <div class="rule-tag tag-a11y">role="region" + aria-label="metric name"</div>
+      <div class="rule-tag tag-a11y">Delta direction in text, not icon-only</div>
+      <div class="rule-tag tag-a11y">Loading state: aria-busy + role="status"</div>
+      <div class="rule-tag tag-resp">Stack vertically at mobile, 2-col at tablet</div>
+      <div class="rule-tag tag-resp">Value font scales down at xs breakpoint</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABLES -->
+<div id="tables" class="page">
+  <div class="page-header">
+    <div class="page-title">📋 Tables</div>
+    <div class="page-desc">Data tables for patient lists, appointment queues, lab results. Support sorting, filtering, row selection, inline actions, and pagination. Uses virtualization for lists over 100 rows.</div>
+  </div>
+
+  <div class="section-label">Variant — Patient List Table</div>
+  <div class="table-wrap" style="margin-bottom:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:13px;font-weight:500">All Patients <span style="font-size:12px;color:var(--color-text-secondary);font-weight:400">(2,847)</span></div>
+      <div style="display:flex;gap:8px"><span class="spec-btn btn-ghost btn-sm"><i class="ti ti-filter" style="font-size:13px" aria-hidden="true"></i> Filter</span><span class="spec-btn btn-primary btn-sm"><i class="ti ti-plus" style="font-size:13px" aria-hidden="true"></i> Add Patient</span></div>
+    </div>
+    <table class="spec-table">
+      <thead><tr><th style="width:32px"><input type="checkbox" style="width:14px;height:14px" aria-label="Select all rows"></th><th>Patient</th><th>MRN</th><th>DOB</th><th>Status</th><th>Last Visit</th><th>Provider</th><th style="width:80px">Actions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" style="width:14px;height:14px" aria-label="Select Amara Osei"></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar">AO</div><div><div style="font-size:12px;font-weight:500">Amara Osei</div><div style="font-size:11px;color:var(--color-text-secondary)">amara.osei@email.com</div></div></div></td>
+          <td><span style="font-family:var(--font-mono);font-size:11px">MRN-00481</span></td>
+          <td style="font-size:12px;color:var(--color-text-secondary)">1987-03-14</td>
+          <td><span class="badge badge-green"><span class="dot dot-green"></span>Active</span></td>
+          <td style="font-size:12px;color:var(--color-text-secondary)">2024-11-20</td>
+          <td style="font-size:12px">Dr. Chen</td>
+          <td><span style="display:flex;gap:4px"><span class="btn-icon" title="View"><i class="ti ti-eye" style="font-size:14px;color:var(--color-text-secondary)" aria-label="View patient"></i></span><span class="btn-icon" title="Edit"><i class="ti ti-edit" style="font-size:14px;color:var(--color-text-secondary)" aria-label="Edit patient"></i></span></span></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" style="width:14px;height:14px" aria-label="Select Marcus Webb"></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="background:#FAEEDA;color:#633806">MW</div><div><div style="font-size:12px;font-weight:500">Marcus Webb</div><div style="font-size:11px;color:var(--color-text-secondary)">m.webb@email.com</div></div></div></td>
+          <td><span style="font-family:var(--font-mono);font-size:11px">MRN-00392</span></td>
+          <td style="font-size:12px;color:var(--color-text-secondary)">1965-08-02</td>
+          <td><span class="badge badge-red"><span class="dot dot-red"></span>Critical</span></td>
+          <td style="font-size:12px;color:var(--color-text-secondary)">2024-11-22</td>
+          <td style="font-size:12px">Dr. Patel</td>
+          <td><span style="display:flex;gap:4px"><span class="btn-icon"><i class="ti ti-eye" style="font-size:14px;color:var(--color-text-secondary)" aria-label="View patient"></i></span><span class="btn-icon"><i class="ti ti-edit" style="font-size:14px;color:var(--color-text-secondary)" aria-label="Edit patient"></i></span></span></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" style="width:14px;height:14px" aria-label="Select Priya Nair"></td>
+          <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="background:#E6F1FB;color:#0C447C">PN</div><div><div style="font-size:12px;font-weight:500">Priya Nair</div><div style="font-size:11px;color:var(--color-text-secondary)">p.nair@email.com</div></div></div></td>
+          <td><span style="font-family:var(--font-mono);font-size:11px">MRN-00517</span></td>
+          <td style="font-size:12px;color:var(--color-text-secondary)">1992-11-30</td>
+          <td><span class="badge badge-amber"><span class="dot dot-amber"></span>Pending</span></td>
+          <td style="font-size:12px;color:var(--color-text-secondary)">2024-10-08</td>
+          <td style="font-size:12px">Dr. Okafor</td>
+          <td><span style="display:flex;gap:4px"><span class="btn-icon"><i class="ti ti-eye" style="font-size:14px;color:var(--color-text-secondary)" aria-label="View patient"></i></span><span class="btn-icon"><i class="ti ti-edit" style="font-size:14px;color:var(--color-text-secondary)" aria-label="Edit patient"></i></span></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--color-background-secondary);border-top:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;color:var(--color-text-secondary)">Showing 1–25 of 2,847 patients</div>
+      <div style="display:flex;gap:4px">
+        <span class="spec-btn btn-ghost btn-sm" style="padding:4px 8px"><i class="ti ti-chevron-left" style="font-size:13px" aria-label="Previous page"></i></span>
+        <span class="spec-btn btn-ghost btn-sm" style="padding:4px 8px;background:#F5EFF9;border-color:#9B6FCA;color:#4A2878">1</span>
+        <span class="spec-btn btn-ghost btn-sm" style="padding:4px 8px">2</span>
+        <span class="spec-btn btn-ghost btn-sm" style="padding:4px 8px">3</span>
+        <span class="spec-btn btn-ghost btn-sm" style="padding:4px 8px"><i class="ti ti-chevron-right" style="font-size:13px" aria-label="Next page"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Table Properties</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <table class="prop-table">
+        <tr><td>selectable</td><td>boolean — row checkboxes</td></tr>
+        <tr><td>sortable</td><td>column[] — sortable columns</td></tr>
+        <tr><td>filterable</td><td>boolean</td></tr>
+        <tr><td>pagination</td><td>{ page, perPage, total }</td></tr>
+        <tr><td>density</td><td>compact | default | comfortable</td></tr>
+        <tr><td>stickyHeader</td><td>boolean</td></tr>
+        <tr><td>rowActions</td><td>Action[] — inline row actions</td></tr>
+      </table>
+    </div>
+    <div class="card card-sm">
+      <div class="rule-tag tag-a11y">role="grid" on table container</div>
+      <div class="rule-tag tag-a11y">aria-sort on sortable column headers</div>
+      <div class="rule-tag tag-a11y">aria-checked on row checkboxes</div>
+      <div class="rule-tag tag-a11y">aria-label on icon-only action buttons</div>
+      <div class="rule-tag tag-resp">Horizontal scroll on tablet/mobile</div>
+      <div class="rule-tag tag-resp">Priority columns shown at small sizes</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIALOGS -->
+<div id="dialogs" class="page">
+  <div class="page-header">
+    <div class="page-title">💬 Dialogs & Modals</div>
+    <div class="page-desc">3 modal sizes (sm 400px, md 560px, lg 800px). Always includes header, body, footer. Focus is trapped inside the dialog. ESC closes all non-critical dialogs.</div>
+  </div>
+
+  <div class="section-label">Variants</div>
+  <div class="grid-2">
+    <div>
+      <div class="card-sub" style="margin-bottom:8px">Confirmation Dialog — Destructive</div>
+      <div class="dialog-mock">
+        <div class="dialog-header">
+          <div><div class="dialog-title">Cancel Appointment?</div><div class="dialog-sub">This action cannot be undone.</div></div>
+          <i class="ti ti-x" style="font-size:16px;cursor:pointer;color:var(--color-text-secondary)" aria-label="Close dialog"></i>
+        </div>
+        <div class="dialog-body">
+          <div style="display:flex;gap:10px;padding:10px 12px;border-radius:6px;background:#FCEBEB;border:0.5px solid #F09595;margin-bottom:12px">
+            <i class="ti ti-alert-circle" style="color:#A32D2D;font-size:16px;flex-shrink:0;margin-top:1px" aria-hidden="true"></i>
+            <div style="font-size:12px;color:#791F1F">Cancelling will notify the patient by SMS and email. The appointment slot will be released.</div>
+          </div>
+          <div style="font-size:13px;color:var(--color-text-secondary)">Appointment with <strong>Amara Osei</strong> on Nov 25 at 10:00 AM</div>
+        </div>
+        <div class="dialog-footer">
+          <span class="spec-btn btn-ghost btn-sm">Keep Appointment</span>
+          <span class="spec-btn btn-danger btn-sm">Cancel Appointment</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card-sub" style="margin-bottom:8px">Informational Dialog</div>
+      <div class="dialog-mock">
+        <div class="dialog-header">
+          <div><div class="dialog-title">Patient Allergy Alert</div><div class="dialog-sub">MRN-00392 · Marcus Webb</div></div>
+          <i class="ti ti-x" style="font-size:16px;cursor:pointer;color:var(--color-text-secondary)" aria-label="Close dialog"></i>
+        </div>
+        <div class="dialog-body">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:6px;background:#FCEBEB;border:0.5px solid #F09595">
+              <div style="font-size:12px;font-weight:500;color:#791F1F"><i class="ti ti-alert-circle" style="font-size:13px;margin-right:4px" aria-hidden="true"></i>Penicillin</div>
+              <span class="badge badge-red" style="font-size:10px">Severe</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:6px;background:#FAEEDA;border:0.5px solid #FAC775">
+              <div style="font-size:12px;font-weight:500;color:#633806"><i class="ti ti-alert-triangle" style="font-size:13px;margin-right:4px" aria-hidden="true"></i>Sulfonamides</div>
+              <span class="badge badge-amber" style="font-size:10px">Moderate</span>
+            </div>
+          </div>
+        </div>
+        <div class="dialog-footer"><span class="spec-btn btn-primary btn-sm">Acknowledge</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Properties & Accessibility</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <table class="prop-table">
+        <tr><td>size</td><td>sm (400) | md (560) | lg (800)</td></tr>
+        <tr><td>variant</td><td>default | danger | info | form</td></tr>
+        <tr><td>dismissible</td><td>boolean — ESC + backdrop click</td></tr>
+        <tr><td>persistent</td><td>boolean — blocks backdrop dismiss</td></tr>
+        <tr><td>scrollBody</td><td>boolean — long content</td></tr>
+      </table>
+    </div>
+    <div class="card card-sm">
+      <div class="rule-tag tag-a11y">role="dialog" + aria-modal="true"</div>
+      <div class="rule-tag tag-a11y">aria-labelledby pointing to title</div>
+      <div class="rule-tag tag-a11y">Focus trapped — Tab cycles within dialog</div>
+      <div class="rule-tag tag-a11y">Focus returns to trigger element on close</div>
+      <div class="rule-tag tag-resp">Full-screen sheet on mobile (≤480px)</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMS -->
+<div id="forms" class="page">
+  <div class="page-header">
+    <div class="page-title">📄 Forms</div>
+    <div class="page-desc">Multi-section forms for patient registration, appointment booking, and clinical notes. Forms use progressive disclosure — only show relevant fields. Validation is inline, on blur.</div>
+  </div>
+
+  <div class="section-label">Patient Registration Form</div>
+  <div class="form-section">
+    <div class="form-sec-header"><i class="ti ti-user" style="font-size:14px;margin-right:6px" aria-hidden="true"></i>Personal Information</div>
+    <div class="form-sec-body">
+      <div class="inline-grid">
+        <div class="spec-input"><div class="input-label">First Name *</div><div class="input-field">Amara</div></div>
+        <div class="spec-input"><div class="input-label">Last Name *</div><div class="input-field">Osei</div></div>
+      </div>
+      <div class="inline-grid">
+        <div class="spec-input"><div class="input-label">Date of Birth *</div><div class="input-field">1987-03-14</div></div>
+        <div class="spec-input"><div class="input-label">Biological Sex *</div><div class="input-field" style="display:flex;justify-content:space-between">Female <i class="ti ti-chevron-down" style="font-size:14px" aria-hidden="true"></i></div></div>
+      </div>
+      <div class="spec-input"><div class="input-label">Email Address</div><div class="input-field focus">amara.osei@email.com</div></div>
+    </div>
+  </div>
+  <div class="form-section">
+    <div class="form-sec-header"><i class="ti ti-file-medical" style="font-size:14px;margin-right:6px" aria-hidden="true"></i>Insurance & Identifiers</div>
+    <div class="form-sec-body">
+      <div class="inline-grid">
+        <div class="spec-input"><div class="input-label">MRN (auto-assigned)</div><div class="input-field" style="opacity:.5;cursor:not-allowed;background:var(--color-background-secondary)">MRN-00481</div></div>
+        <div class="spec-input"><div class="input-label">Insurance Provider</div><div class="input-field" style="display:flex;justify-content:space-between">BlueCross PPO <i class="ti ti-chevron-down" style="font-size:14px" aria-hidden="true"></i></div></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px">
+    <span class="spec-btn btn-ghost">Save as Draft</span>
+    <span class="spec-btn btn-primary"><i class="ti ti-check" style="font-size:14px" aria-hidden="true"></i> Register Patient</span>
+  </div>
+
+  <div class="section-label">Form Rules</div>
+  <div class="grid-2">
+    <div class="rule-block">Validate on blur, not on keystroke. Show errors after first submit.</div>
+    <div class="rule-block info">Group related fields into labeled sections with collapsible behavior on mobile.</div>
+    <div class="rule-block warn">Never auto-populate medical fields from unverified sources.</div>
+    <div class="rule-tag tag-a11y" style="display:block;margin:4px 0">aria-required on required fields. Error IDs linked via aria-describedby.</div>
+  </div>
+</div>
+
+<!-- DROPDOWNS -->
+<div id="dropdowns" class="page">
+  <div class="page-header">
+    <div class="page-title">⬇️ Dropdowns & Selects</div>
+    <div class="page-desc">3 types: select (form field), menu (actions), combobox (searchable select). All support keyboard navigation. Popovers use floating-ui for positioning.</div>
+  </div>
+
+  <div class="section-label">Action Menu</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div class="card-sub" style="margin-bottom:8px">Triggered by row "⋯" button</div>
+      <div class="dd-list">
+        <div class="dd-item"><span style="display:flex;align-items:center;gap:8px"><i class="ti ti-eye" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i>View Profile</span></div>
+        <div class="dd-item dd-active"><span style="display:flex;align-items:center;gap:8px"><i class="ti ti-edit" style="font-size:14px" aria-hidden="true"></i>Edit Patient</span><i class="ti ti-check" style="font-size:13px" aria-hidden="true"></i></div>
+        <div class="dd-item"><span style="display:flex;align-items:center;gap:8px"><i class="ti ti-calendar-plus" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i>Book Appointment</span></div>
+        <div class="dd-divider"></div>
+        <div class="dd-item" style="color:#A32D2D"><span style="display:flex;align-items:center;gap:8px"><i class="ti ti-trash" style="font-size:14px" aria-hidden="true"></i>Delete Patient</span></div>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-sub" style="margin-bottom:8px">Filter chips + multi-select</div>
+      <div style="font-size:12px;font-weight:500;margin-bottom:6px">Filter by Status</div>
+      <div class="chip-row">
+        <span class="chip chip-active">Active</span>
+        <span class="chip">Inactive</span>
+        <span class="chip chip-active">Critical</span>
+        <span class="chip">Pending</span>
+        <span class="chip">New</span>
+      </div>
+      <div style="font-size:12px;font-weight:500;margin:12px 0 6px">Filter by Provider</div>
+      <div class="chip-row">
+        <span class="chip chip-active">Dr. Chen</span>
+        <span class="chip">Dr. Patel</span>
+        <span class="chip">Dr. Okafor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Accessibility</div>
+  <div class="grid-2">
+    <div class="rule-tag tag-a11y" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)">role="listbox" on dropdown, role="option" on items. aria-expanded on trigger button. Arrow keys navigate items. Enter/Space selects. ESC closes.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)">Dropdown menus become bottom sheet drawers at mobile viewport. Min touch target 44px per item.</div>
+  </div>
+</div>
+
+<!-- APPOINTMENTS PATTERN -->
+<div id="appointments" class="page">
+  <div class="page-header">
+    <div class="page-title">📅 Appointment Management Pattern</div>
+    <div class="page-desc">Covers the full lifecycle: scheduling, confirmation, reminders, check-in, consultation, and follow-up. Day view + Week view + List view.</div>
+  </div>
+
+  <div class="section-label">Day View — Appointment Queue</div>
+  <div class="grid-2">
+    <div class="card card-sm">
+      <div style="font-size:12px;font-weight:500;margin-bottom:8px;color:var(--color-text-secondary)">Monday, Nov 25 · Dr. Chen</div>
+      <div class="appt-slot" style="border-left:3px solid #6B3FA0">
+        <div class="appt-time">09:00</div>
+        <div class="appt-info"><div class="appt-name">Amara Osei</div><div class="appt-type">Consultation · 30 min</div></div>
+        <span class="badge badge-teal" style="font-size:10px">Checked In</span>
+      </div>
+      <div class="appt-slot" style="border-left:3px solid #378ADD">
+        <div class="appt-time">09:30</div>
+        <div class="appt-info"><div class="appt-name">James Torres</div><div class="appt-type">Follow-up · 15 min</div></div>
+        <span class="badge badge-blue" style="font-size:10px">Scheduled</span>
+      </div>
+      <div class="appt-slot" style="border-left:3px solid #EF9F27">
+        <div class="appt-time">10:00</div>
+        <div class="appt-info"><div class="appt-name">Priya Nair</div><div class="appt-type">New Patient · 60 min</div></div>
+        <span class="badge badge-amber" style="font-size:10px">Pending</span>
+      </div>
+      <div class="appt-slot" style="border-left:3px solid #B4B2A9;opacity:.6">
+        <div class="appt-time">11:00</div>
+        <div class="appt-info"><div class="appt-name">Liu Wei</div><div class="appt-type">Lab Review · 20 min</div></div>
+        <span class="badge badge-gray" style="font-size:10px">No-Show</span>
+      </div>
+      <div class="appt-slot" style="border-left:3px solid #E24B4A;opacity:.7">
+        <div class="appt-time">11:30</div>
+        <div class="appt-info"><div class="appt-name">Sandra Kowalski</div><div class="appt-type">Urgent · 30 min</div></div>
+        <span class="badge badge-red" style="font-size:10px">Cancelled</span>
+      </div>
+    </div>
+    <div class="card card-sm">
+      <div class="card-title">Pattern Properties</div>
+      <table class="prop-table" style="margin-top:8px">
+        <tr><td>view</td><td>day | week | month | list</td></tr>
+        <tr><td>provider</td><td>single | multi — toggle</td></tr>
+        <tr><td>slot duration</td><td>15min | 30min | 60min</td></tr>
+        <tr><td>drag-drop</td><td>boolean — reschedule</td></tr>
+        <tr><td>conflict check</td><td>inline — highlight overlaps</td></tr>
+        <tr><td>waitlist</td><td>boolean — auto-fill cancellations</td></tr>
+      </table>
+      <div style="margin-top:10px">
+        <div class="rule-tag tag-a11y">Calendar navigation announces date on focus</div>
+        <div class="rule-tag tag-resp">List view on mobile, calendar on ≥tablet</div>
+        <div class="rule-tag tag-state">Drag-drop requires keyboard fallback</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PATIENTS PATTERN -->
+<div id="patients" class="page">
+  <div class="page-header">
+    <div class="page-title">👥 Patient Management Pattern</div>
+    <div class="page-desc">Patient 360 view: demographics, clinical summary, appointment history, documents, billing. Surfaced through a tabbed side panel or full-page profile.</div>
+  </div>
+
+  <div class="section-label">Patient Profile — Card Summary</div>
+  <div class="card" style="margin-bottom:12px">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="width:52px;height:52px;border-radius:50%;background:#F5EFF9;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:500;color:#4A2878;flex-shrink:0">AO</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">
+          <div style="font-size:16px;font-weight:500">Amara Osei</div>
+          <span class="badge badge-green"><span class="dot dot-green"></span>Active</span>
+          <span class="badge badge-red" style="font-size:10px"><i class="ti ti-alert-circle" style="font-size:11px" aria-hidden="true"></i>Allergy</span>
+        </div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px">
+          <span style="font-family:var(--font-mono)">MRN-00481</span> · F · 37 yrs · DOB: Mar 14, 1987 · Dr. Chen
+        </div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <div><div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em">Last Visit</div><div style="font-size:12px;font-weight:500">Nov 20, 2024</div></div>
+          <div><div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em">Next Appointment</div><div style="font-size:12px;font-weight:500;color:#6B3FA0">Nov 25 · 09:00</div></div>
+          <div><div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em">Insurance</div><div style="font-size:12px;font-weight:500">BlueCross PPO</div></div>
+          <div><div style="font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em">HbA1c</div><div style="font-size:12px;font-weight:500;font-family:var(--font-mono);color:#3B6D11">6.4 mmol/L</div></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <span class="spec-btn btn-secondary btn-sm"><i class="ti ti-calendar-plus" style="font-size:13px" aria-hidden="true"></i>Book</span>
+        <span class="spec-btn btn-ghost btn-sm"><i class="ti ti-dots" style="font-size:13px" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Profile Tabs</div>
+  <div style="display:flex;gap:2px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:12px">
+    <span class="nav-chip active-nav">Overview</span>
+    <span class="nav-chip" style="color:var(--color-text-secondary)">Appointments</span>
+    <span class="nav-chip" style="color:var(--color-text-secondary)">Clinical Notes</span>
+    <span class="nav-chip" style="color:var(--color-text-secondary)">Documents</span>
+    <span class="nav-chip" style="color:var(--color-text-secondary)">Billing</span>
+  </div>
+  <div class="rule-block info">Tab content lazy-loads on first activation. Active tab persists across browser refresh via URL hash.</div>
+</div>
+
+<!-- TEMPLATES -->
+<div id="tpl-login" class="page">
+  <div class="page-header">
+    <div class="page-title">🔐 Template — Login</div>
+    <div class="page-desc">Centered card layout. HIPAA notice prominently displayed. Supports SSO, MFA. Session timeout handled gracefully with re-authentication modal.</div>
+  </div>
+
+  <div class="template-frame">
+    <div style="background:#F1EFE8;min-height:340px;display:flex;align-items:center;justify-content:center;padding:24px">
+      <div style="width:100%;max-width:340px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden">
+        <div style="padding:20px 24px;border-bottom:0.5px solid var(--color-border-tertiary);text-align:center">
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px">
+            <div style="width:28px;height:28px;background:#6B3FA0;border-radius:6px;display:flex;align-items:center;justify-content:center"><i class="ti ti-heart-rate-monitor" style="font-size:14px;color:#fff" aria-hidden="true"></i></div>
+            <div style="font-size:15px;font-weight:500">Leey Lany</div>
+          </div>
+          <div style="font-size:11px;color:var(--color-text-secondary)">Sign in to your account</div>
+        </div>
+        <div style="padding:16px 24px;display:flex;flex-direction:column;gap:10px">
+          <div class="spec-input"><div class="input-label">Email</div><div class="input-field" style="font-size:12px">provider@hospital.org</div></div>
+          <div class="spec-input"><div class="input-label">Password</div><div class="input-field" style="display:flex;justify-content:space-between;font-size:12px"><span>••••••••••••</span><i class="ti ti-eye-off" style="font-size:14px;color:var(--color-text-secondary)" aria-label="Show password"></i></div></div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <label style="display:flex;align-items:center;gap:6px;font-size:11px"><input type="checkbox"> Remember device</label>
+            <span style="font-size:11px;color:#6B3FA0;cursor:pointer">Forgot password?</span>
+          </div>
+          <div class="spec-btn btn-primary" style="width:100%;justify-content:center;font-size:13px;margin-top:4px">Sign In</div>
+          <div style="border-top:0.5px solid var(--color-border-tertiary);padding-top:10px">
+            <div class="spec-btn btn-ghost" style="width:100%;justify-content:center;font-size:12px"><i class="ti ti-building-hospital" style="font-size:14px" aria-hidden="true"></i> Continue with Hospital SSO</div>
+          </div>
+          <div style="font-size:10px;color:var(--color-text-tertiary);text-align:center;border-top:0.5px solid var(--color-border-tertiary);padding-top:8px">
+            🔒 HIPAA compliant · All sessions encrypted · Activity logged
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Responsive Behavior</div>
+  <div class="grid-3">
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Desktop:</strong> Centered card on subtle bg. Optional: split with product visual.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Tablet:</strong> Same card, bg simplified. Logo at top.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Mobile:</strong> Full-screen form. No bg card wrapper.</div>
+  </div>
+</div>
+
+<div id="tpl-dashboard" class="page">
+  <div class="page-header">
+    <div class="page-title">📊 Template — Dashboard</div>
+    <div class="page-desc">Primary landing page after login. KPI row, appointment today panel, alerts sidebar, and recent activity. Fixed sidebar nav + scrollable main.</div>
+  </div>
+
+  <div class="template-frame">
+    <div class="tmpl-topbar">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:20px;height:20px;background:#6B3FA0;border-radius:4px;display:flex;align-items:center;justify-content:center"><i class="ti ti-heart-rate-monitor" style="font-size:11px;color:#fff" aria-hidden="true"></i></div>
+        <span style="font-size:12px;font-weight:500">Leey Lany</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <i class="ti ti-bell" style="font-size:16px;color:var(--color-text-secondary)" aria-label="Notifications"></i>
+        <div class="avatar" style="width:24px;height:24px;font-size:10px">DC</div>
+      </div>
+    </div>
+    <div class="tmpl-body">
+      <div class="tmpl-sidebar">
+        <div class="tmpl-nav-item act"><i class="ti ti-dashboard" style="font-size:13px" aria-hidden="true"></i>Dashboard</div>
+        <div class="tmpl-nav-item"><i class="ti ti-users" style="font-size:13px" aria-hidden="true"></i>Patients</div>
+        <div class="tmpl-nav-item"><i class="ti ti-calendar-event" style="font-size:13px" aria-hidden="true"></i>Appointments</div>
+        <div class="tmpl-nav-item"><i class="ti ti-report-medical" style="font-size:13px" aria-hidden="true"></i>Reports</div>
+        <div class="tmpl-nav-item"><i class="ti ti-settings" style="font-size:13px" aria-hidden="true"></i>Settings</div>
+      </div>
+      <div class="tmpl-main">
+        <div style="font-size:12px;font-weight:500;margin-bottom:10px">Good morning, Dr. Chen · Monday, Nov 25</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+          <div class="mini-kpi"><div class="mini-kpi-val">2,847</div><div class="mini-kpi-lbl">Total Patients</div></div>
+          <div class="mini-kpi"><div class="mini-kpi-val" style="color:#6B3FA0">34</div><div class="mini-kpi-lbl">Today's Appts</div></div>
+          <div class="mini-kpi"><div class="mini-kpi-val" style="color:#EF9F27">12</div><div class="mini-kpi-lbl">Pending Reviews</div></div>
+          <div class="mini-kpi"><div class="mini-kpi-val" style="color:#E24B4A">3</div><div class="mini-kpi-lbl">Critical Alerts</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 140px;gap:8px">
+          <div style="border:0.5px solid var(--color-border-tertiary);border-radius:6px;overflow:hidden">
+            <div style="padding:6px 10px;background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);font-size:11px;font-weight:500">Today's Appointments</div>
+            <div style="padding:6px 10px">
+              <div class="appt-slot" style="border-left:2px solid #6B3FA0;margin-bottom:3px;padding:4px 8px">
+                <div class="appt-time" style="width:36px;font-size:9px">09:00</div>
+                <div class="appt-info"><div class="appt-name" style="font-size:10px">Amara Osei</div></div>
+                <span class="badge badge-teal" style="font-size:9px;padding:1px 5px">In</span>
+              </div>
+              <div class="appt-slot" style="border-left:2px solid #378ADD;margin-bottom:3px;padding:4px 8px">
+                <div class="appt-time" style="width:36px;font-size:9px">09:30</div>
+                <div class="appt-info"><div class="appt-name" style="font-size:10px">J. Torres</div></div>
+                <span class="badge badge-blue" style="font-size:9px;padding:1px 5px">Sched</span>
+              </div>
+            </div>
+          </div>
+          <div style="border:0.5px solid #F09595;border-radius:6px;background:#FCEBEB;padding:8px">
+            <div style="font-size:10px;font-weight:500;color:#791F1F;margin-bottom:6px"><i class="ti ti-alert-circle" style="font-size:12px" aria-hidden="true"></i> Alerts (3)</div>
+            <div style="font-size:9px;color:#A32D2D;border-bottom:0.5px solid #F7C1C1;padding-bottom:4px;margin-bottom:4px">M. Webb — Critical BP</div>
+            <div style="font-size:9px;color:#A32D2D;border-bottom:0.5px solid #F7C1C1;padding-bottom:4px;margin-bottom:4px">Lab results overdue · 2</div>
+            <div style="font-size:9px;color:#A32D2D">Allergy flag — P. Nair</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Responsive Behavior</div>
+  <div class="grid-3">
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Desktop:</strong> Fixed sidebar (220px) + scrollable content. KPIs in 4-col row.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Tablet:</strong> Sidebar collapses to icon-only (56px). KPIs 2×2 grid.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Mobile:</strong> Bottom nav replaces sidebar. KPIs stack 1-col. Alerts as a banner.</div>
+  </div>
+</div>
+
+<div id="tpl-patients" class="page">
+  <div class="page-header">
+    <div class="page-title">👤 Template — Patients</div>
+    <div class="page-desc">Master-detail layout. Left: searchable, filterable patient list. Right: Patient 360 profile panel (slides in). Inline status updates, quick-book.</div>
+  </div>
+
+  <div class="template-frame">
+    <div class="tmpl-topbar">
+      <span style="font-size:12px;font-weight:500">Patients</span>
+      <span class="spec-btn btn-primary btn-sm" style="font-size:11px;padding:4px 10px"><i class="ti ti-plus" style="font-size:12px" aria-hidden="true"></i> Add Patient</span>
+    </div>
+    <div style="display:flex;min-height:280px">
+      <div style="width:240px;border-right:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column">
+        <div style="padding:8px;border-bottom:0.5px solid var(--color-border-tertiary)">
+          <div class="input-field" style="display:flex;align-items:center;gap:6px;padding:5px 8px;font-size:11px"><i class="ti ti-search" style="font-size:12px;color:var(--color-text-secondary)" aria-hidden="true"></i><span style="color:var(--color-text-tertiary)">Search patients...</span></div>
+        </div>
+        <div style="padding:6px 8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;gap:4px">
+          <span class="chip chip-active" style="font-size:10px">All</span>
+          <span class="chip" style="font-size:10px">Active</span>
+          <span class="chip" style="font-size:10px">Critical</span>
+        </div>
+        <div style="flex:1;overflow-y:auto">
+          <div style="padding:8px;border-bottom:0.5px solid var(--color-border-tertiary);background:#F5EFF9;cursor:pointer">
+            <div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px">AO</div><div><div style="font-size:11px;font-weight:500">Amara Osei</div><div style="font-size:9px;color:#4A2878">MRN-00481 · Active</div></div></div>
+          </div>
+          <div style="padding:8px;border-bottom:0.5px solid var(--color-border-tertiary);cursor:pointer">
+            <div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px;background:#FCEBEB;color:#791F1F">MW</div><div><div style="font-size:11px;font-weight:500">Marcus Webb</div><div style="font-size:9px;color:#A32D2D">MRN-00392 · Critical</div></div></div>
+          </div>
+          <div style="padding:8px;cursor:pointer">
+            <div style="display:flex;align-items:center;gap:6px"><div class="avatar" style="width:22px;height:22px;font-size:9px;background:#E6F1FB;color:#0C447C">PN</div><div><div style="font-size:11px;font-weight:500">Priya Nair</div><div style="font-size:9px;color:var(--color-text-secondary)">MRN-00517 · Pending</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;padding:14px;background:var(--color-background-secondary)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div class="avatar" style="width:40px;height:40px;font-size:14px">AO</div>
+          <div><div style="font-size:13px;font-weight:500">Amara Osei</div><div style="font-size:10px;color:var(--color-text-secondary);font-family:var(--font-mono)">MRN-00481 · F · 37 · Dr. Chen</div></div>
+          <div style="margin-left:auto;display:flex;gap:4px">
+            <span class="badge badge-green" style="font-size:9px"><span class="dot dot-green"></span>Active</span>
+            <span class="badge badge-red" style="font-size:9px"><i class="ti ti-alert-circle" style="font-size:10px" aria-hidden="true"></i>Allergy</span>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div class="mini-kpi" style="font-size:10px"><div class="mini-kpi-val" style="font-size:13px">Nov 25</div><div class="mini-kpi-lbl">Next Appointment</div></div>
+          <div class="mini-kpi" style="font-size:10px"><div class="mini-kpi-val" style="font-size:13px;font-family:var(--font-mono);color:#3B6D11">6.4</div><div class="mini-kpi-lbl">HbA1c mmol/L</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="tpl-appointments" class="page">
+  <div class="page-header">
+    <div class="page-title">📆 Template — Appointments</div>
+    <div class="page-desc">Full-page scheduling interface. Toggle between Day / Week / Month / List. Provider filter in toolbar. Quick-add slot via empty slot click. Drag to reschedule.</div>
+  </div>
+
+  <div class="template-frame">
+    <div class="tmpl-topbar">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="spec-btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px"><i class="ti ti-chevron-left" aria-label="Previous day"></i></span>
+        <span style="font-size:12px;font-weight:500">Mon, Nov 25, 2024</span>
+        <span class="spec-btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px"><i class="ti ti-chevron-right" aria-label="Next day"></i></span>
+      </div>
+      <div style="display:flex;gap:4px">
+        <span class="chip chip-active" style="font-size:10px">Day</span>
+        <span class="chip" style="font-size:10px">Week</span>
+        <span class="chip" style="font-size:10px">List</span>
+      </div>
+      <div style="display:flex;gap:6px">
+        <div class="input-field" style="font-size:10px;padding:4px 8px;display:flex;align-items:center;gap:4px"><i class="ti ti-user" style="font-size:11px" aria-hidden="true"></i>All Providers <i class="ti ti-chevron-down" style="font-size:11px" aria-hidden="true"></i></div>
+        <span class="spec-btn btn-primary btn-sm" style="font-size:11px;padding:4px 10px"><i class="ti ti-plus" style="font-size:12px" aria-hidden="true"></i> New</span>
+      </div>
+    </div>
+    <div style="display:flex;min-height:260px">
+      <div style="width:48px;border-right:0.5px solid var(--color-border-tertiary);padding:8px 4px;display:flex;flex-direction:column;gap:0">
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">09:00</div>
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">09:30</div>
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">10:00</div>
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">10:30</div>
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">11:00</div>
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">11:30</div>
+        <div style="font-size:9px;color:var(--color-text-tertiary);text-align:center;height:36px;display:flex;align-items:center;justify-content:center">12:00</div>
+      </div>
+      <div style="flex:1;padding:8px;background:var(--color-background-secondary);position:relative">
+        <div style="border-left:2px solid #6B3FA0;background:#F5EFF9;border-radius:0 4px 4px 0;padding:4px 8px;margin-bottom:2px;height:34px;display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px"><div style="font-weight:500;color:#4A2878">Amara Osei</div><div style="color:#4A2878;opacity:.7">Consultation · 09:00</div></div>
+          <span class="badge badge-teal" style="font-size:9px;margin-left:auto">Checked In</span>
+        </div>
+        <div style="border-left:2px solid #378ADD;background:#E6F1FB;border-radius:0 4px 4px 0;padding:4px 8px;margin-bottom:2px;height:34px;display:flex;align-items:center">
+          <div style="font-size:10px"><div style="font-weight:500;color:#0C447C">James Torres</div><div style="color:#0C447C;opacity:.7">Follow-up · 09:30</div></div>
+        </div>
+        <div style="border-left:2px solid #EF9F27;background:#FAEEDA;border-radius:0 4px 4px 0;padding:4px 8px;margin-bottom:2px;height:66px;display:flex;align-items:center">
+          <div style="font-size:10px"><div style="font-weight:500;color:#633806">Priya Nair</div><div style="color:#633806;opacity:.7">New Patient · 60 min</div></div>
+        </div>
+        <div style="border:1px dashed var(--color-border-secondary);border-radius:4px;height:34px;display:flex;align-items:center;justify-content:center;margin-bottom:2px;cursor:pointer">
+          <span style="font-size:10px;color:var(--color-text-tertiary)"><i class="ti ti-plus" style="font-size:11px" aria-hidden="true"></i> Add appointment</span>
+        </div>
+        <div style="border-left:2px solid #E24B4A;background:#FCEBEB;border-radius:0 4px 4px 0;padding:4px 8px;height:34px;display:flex;align-items:center;opacity:.6">
+          <div style="font-size:10px"><div style="font-weight:500;color:#791F1F">Sandra Kowalski</div><div style="color:#791F1F;opacity:.7">Cancelled</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Responsive Behavior</div>
+  <div class="grid-3">
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Desktop:</strong> Full calendar grid. Multi-provider columns. Drag-drop enabled.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Tablet:</strong> Day view default. Swipe between days. Provider filter in bottom sheet.</div>
+    <div class="rule-tag tag-resp" style="display:block;padding:8px 12px;border-radius:6px;background:var(--color-background-secondary)"><strong>Mobile:</strong> List view only. Each appointment card is tappable. Quick actions on swipe.</div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+function nav(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));
+  var page=document.getElementById(id);
+  if(page)page.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(function(item){
+    if(item.getAttribute('onclick')==="nav('"+id+"')")item.classList.add('active');
+  });
+}
+</script>
